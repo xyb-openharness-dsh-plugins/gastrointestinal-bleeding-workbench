@@ -4,7 +4,7 @@
 
 | 里程碑 | 交付物（文件/提交号） | 验证命令 | 关键输出（原文摘录：数字/退出码） | 未验证项及原因 |
 |---|---|---|---|---|
-| M0 | starter 初始化文件；提交见本行补录 | `node /data/home/dev/xyb-workbench-starter/scripts/init.mjs --config /tmp/gib-config.json --target /data/home/dev/gastrointestinal-bleeding-workbench` | `{"generated":"/data/home/dev/gastrointestinal-bleeding-workbench","files":252,"layout":"business-first"}`；退出码 0 | npm 检查尚未运行；项目远端首次 push 尚未验证 |
+| M0 | starter 初始化 252 个文件；提交 `8564128eb356455ed5488071a8d5d67def57af4d` | `node /data/home/dev/xyb-workbench-starter/scripts/init.mjs --config /tmp/gib-config.json --target /data/home/dev/gastrointestinal-bleeding-workbench`；`git push -u origin main` | init 原文 `{"generated":"/data/home/dev/gastrointestinal-bleeding-workbench","files":252,"layout":"business-first"}`；init 退出码 0；push 原文 `* [new branch] main -> main`；push 退出码 0 | npm 检查尚未运行；DSH Desktop 实机未验证 |
 | M1 |  |  |  |  |
 | M2 |  |  |  |  |
 | M3 |  |  |  |  |

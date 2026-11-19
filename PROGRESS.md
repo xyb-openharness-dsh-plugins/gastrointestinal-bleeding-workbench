@@ -12,6 +12,14 @@ M0–M2 原型交付完成；当前等用户确认 M2 原型后，才可进入 M
 - M1：三路桌面调研、来源范围核查、S1–S4 场景、G1 自动签认草案（待晨审追认）、HVT 五层及交互路径草案完成。指南现行性已核出 2025 AWMF 综合指南、2026 ESGE 专题更新、ACG 2023 下消化道更新；患者访谈/临床审阅/独立 review 未完成。
 - M2：`prototypes/v0.2/index.html` 完成（SHA-256 `de7d003113296fb248326e2dcf4472bc00f6ed012b6b51a136a3c5f0bc5c3956`）；Chromium 实际预览、照护者合成场景填入并生成摘要、Agent 模拟面板开合已走查；截图已存 `docs/evidence/`。用户确认尚未取得，M3冻结/生产业务受此门禁阻挡。
 
+## 2026-11-20 晨间窗口（续跑）
+
+- 认领：issue #87 已发 /claim 并自查补 claim/claimed 标签（机器人夜间无回执，待追认）。
+- M2 补齐：primer 三件套（primer-data.js 本病种重写 + starter 36 号模式件）与双入口接线；探针 10/10、self-test 红、check-primer-links 17/17；G2 自动签认（待追认）见 docs/G2-AUTO-SIGNOFF.md。
+- B 任务（面板契约）：starter 基线 lib/client.js 已过 check-agent-pane-contract；grep 数字 newSession=3 / subscribe=2 / ensureSession=0 / Boolean(conversation)=0 / ownsSession=2。装机实机状态未验证（M6 未开始）。
+- npm run check 当前红点：check-data-dir（M5 范围：目录选择/拒绝清单/config.root 未接）——如实保留。
+- M3–M9 未开始（时间盒到点）；下一步：M3 schema 冻结（以 4c28fa5c… 为原型基线候选，待用户追认）。
+
 ## 下一步
 
 - M3：等待用户明确确认 M2 的 hash 和功能范围；确认后冻结 schema。

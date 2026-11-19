@@ -28,3 +28,10 @@
 
 - 用户/照护者真实可用性及临床审阅；电话/系统拨号；DSH Desktop 原生会话、newSession/subscribe、面板 splitter 键盘调整、窄窗口宿主联动及草稿冲突。
 - 浏览器内部状态的自动断言未运行；截图仅证明渲染快照，不代表用户确认或生产业务完成。
+
+## 2026-11-20 晨间窗口 · primer 三件套接线（续跑）
+
+- 变更：新增 `primer-data.js`（消化道出血四段，来源状态对齐 USER-RESEARCH）、`primer.js`/`primer.css`（starter 36 号模式件，IIFE，file:// 可开）；`index.html` 接线（link/script 三处、顶栏「?」、概要卡双入口，均 `data-primer-open`），移除旧的内联折叠实现。
+- 实测：probe-disease-primer（URL http://127.0.0.1:8126/prototypes/v0.2/index.html）10/10；--self-test exit 2（红）；check-primer-links 17/17。
+- 新原型 index.html SHA-256 前 16 位：`4c28fa5c35d241fa`（完整值见本提交 diff；旧值 de7d0031… 已失效，M3 数据合同以本版为基线候选）。
+- 范围注记：本原型为「并发症试点 CX-001」首屏线（求助优先、可跳过记录、交接摘要）；家族全量四件套与试验线在 M2 之后里程碑逐项补齐，未实现项如实记录，不冒充已实现。

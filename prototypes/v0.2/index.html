@@ -15,6 +15,8 @@
 body.agent-open.agent-layout-mid .topbar,body.agent-open.agent-layout-narrow .topbar{flex-wrap:wrap}body.agent-open.agent-layout-mid .top-status,body.agent-open.agent-layout-narrow .top-status{display:none}body.agent-open.agent-layout-narrow .rail-label,body.agent-open.agent-layout-narrow .nav-text,body.agent-open.agent-layout-narrow .rail-note{display:none}body.agent-open.agent-layout-narrow .nav-link{justify-content:center;padding-left:4px;padding-right:4px}body.agent-open.agent-layout-mid .urgent,body.agent-open.agent-layout-narrow .urgent{align-items:flex-start;flex-direction:column}body.agent-open.agent-layout-mid .urgent-actions,body.agent-open.agent-layout-narrow .urgent-actions{width:100%}body.agent-open.agent-layout-narrow .content-grid,body.agent-open.agent-layout-narrow .form-row{grid-template-columns:1fr}body.agent-open.agent-layout-narrow .case-strip{grid-template-columns:repeat(2,minmax(0,1fr))}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 </style>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="primer.css">
 </head>
 <body>
 <a class="skip-link" href="#main">跳到主要内容</a>
@@ -23,6 +25,7 @@ body.agent-open.agent-layout-mid .topbar,body.agent-open.agent-layout-narrow .to
   <div class="top-status">就诊信息整理 · 先求助，记录可跳过</div>
   <div class="top-actions">
     <button class="btn" id="fontButton" type="button" aria-label="切换大字">大字</button>
+    <button class="btn" id="primerTopButton" type="button" data-primer-open aria-label="疾病概要：定义、医学资料规范和指南情况、治疗全景概要、发展趋势">?</button>
     <button class="btn" id="settingsButton" type="button">⚙ 设置</button>
     <button class="btn" id="agentToggle" type="button" aria-expanded="false">打开 AI 对话</button>
   </div>
@@ -38,7 +41,7 @@ body.agent-open.agent-layout-mid .topbar,body.agent-open.agent-layout-narrow .to
   <main id="main" class="workspace">
     <div class="page-head">
       <div><div class="eyebrow">患者 / 照护者 · 事实整理</div><h1>先求助，再决定是否记录</h1><p class="intro">如果现在有人需要紧急帮助，请直接使用急诊求助入口。下方记录完全可选，也可以留空后再继续。</p></div>
-      <div class="head-actions"><button class="btn" type="button" id="copyQuestion">复制就诊交接问题</button><button class="btn" type="button" id="primerButton">疾病概要 ?</button></div>
+      <div class="head-actions"><button class="btn" type="button" id="copyQuestion">复制就诊交接问题</button><button class="btn" type="button" data-primer-open>疾病概要 ?</button></div>
     </div>
     <section class="urgent" aria-labelledby="urgentTitle">
       <div class="urgent-copy"><p class="urgent-title" id="urgentTitle">出现疑似出血表现或感到情况紧急，请立即求助</p><p>例如呕血、咖啡渣样呕吐、黑便或便血。不要等待填写记录；本页不会判断出血量或排除危险。</p></div>
@@ -77,7 +80,7 @@ body.agent-open.agent-layout-mid .topbar,body.agent-open.agent-layout-narrow .to
         <div class="source-legend">来源说明：每条记录标明由谁记录、信息来自哪里。缺失信息会保持空白，不表示没有症状。</div>
       </section>
     </div>
-    <section id="primer" class="panel" style="margin-top:16px" aria-labelledby="primerTitle"><div class="section-title" style="margin-top:0"><h2 id="primerTitle">疾病概要</h2><button class="btn" type="button" id="primerOpen">查看四段概要</button></div><p class="panel-intro">概念性信息区；医学内容需临床审阅后补入。本原型不提供治疗方案或个体判断。</p><div id="primerContent" hidden><div class="fact"><strong>定义</strong><p>消化道出血是消化道不同部位发生出血的临床表现；具体来源需由医疗专业人员评估。</p></div><div class="fact"><strong>医学资料规范和指南情况</strong><p>指南适用范围各异。患者版内容仅限识别和求助；院内治疗建议不转译为自我处置指令。当前来源状态见研究记录，待临床审阅。</p></div><div class="fact"><strong>目前治疗全景概要</strong><p>此段待临床审阅后撰写；原型不提供用药或治疗建议。</p></div><div class="fact"><strong>发展趋势</strong><p>截至本原型研究记录：已检索到 2025 年综合指南更新及 2026 年消化性溃疡出血专题更新；地区适用性待核。不得据此推断未来趋势。</p></div></div></section>
+    <section id="primer" class="panel" style="margin-top:16px" aria-labelledby="primerTitle"><div class="section-title" style="margin-top:0"><h2 id="primerTitle">疾病概要：消化道出血是什么？</h2><button class="btn" type="button" data-primer-open>打开整页概要</button></div><p class="panel-intro">四段概念性说明（定义 · 医学资料规范和指南情况 · 目前治疗全景概要 · 发展趋势），整页打开；每段带来源与取得状态，未取得原件如实标注，待临床审阅。本台不提供治疗方案或个体判断。</p><p class="note">入口共两处：顶栏「?」按钮与本卡片按钮，打开同一个整页面板。</p></section>
     <div class="footer-disclaimer">本工具用于整理观察事实，不诊断、不分级、不建议用药，也不判断出血量是否安全。遇到紧急情况，请先寻求急诊帮助。</div>
   </main>
 </div>
@@ -100,6 +103,8 @@ body.agent-open.agent-layout-mid .topbar,body.agent-open.agent-layout-narrow .to
   </div>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="primer-data.js"></script>
+<script src="primer.js"></script>
 <script>
 (()=>{
 const samples={
@@ -120,7 +125,7 @@ $("copySummary").addEventListener("click",()=>copy("消化道出血就诊事实�
 $("downloadSummary").addEventListener("click",()=>{const blob=new Blob(["消化道出血就诊事实摘要（用户记录；非诊断）\n\n"+textSummary()],{type:"text/plain;charset=utf-8"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="就诊事实摘要-模拟.txt";a.click();URL.revokeObjectURL(a.href);toast("已生成文本文件。")});
 const pane=$("agentPane"),toggle=$("agentToggle");function syncLayout(){const w=window.innerWidth-(window.innerWidth<=760?0:pane.getBoundingClientRect().width);document.body.classList.toggle("agent-layout-mid",w<=760&&w>620);document.body.classList.toggle("agent-layout-narrow",w<=620)}function openPane(){pane.classList.add("open");document.body.classList.add("agent-open");document.body.style.setProperty("--pane-width",pane.style.width||"35vw");syncLayout();pane.setAttribute("aria-hidden","false");toggle.textContent="隐藏 AI 对话";toggle.setAttribute("aria-expanded","true")}function hidePane(){pane.classList.remove("open");document.body.classList.remove("agent-open","agent-layout-mid","agent-layout-narrow");pane.setAttribute("aria-hidden","true");toggle.textContent="打开 AI 对话";toggle.setAttribute("aria-expanded","false")}toggle.addEventListener("click",()=>pane.classList.contains("open")?hidePane():openPane());$("hideAgent").addEventListener("click",hidePane);$("prepareDraft").addEventListener("click",()=>{$("agentDraft").value=textSummary();toast("预览已更新；没有连接真实会话，也没有发送。")});$("simulateConnect").addEventListener("click",()=>toast("演示状态：宿主不可用。真实连接未验证。"));$("showConflict").addEventListener("click",()=>{$("draftConflict").hidden=false;toast("演示冲突：保留宿主原稿，不覆盖。")});
 const splitter=$("splitter");function setPaneWidth(percent){const n=Math.max(25,Math.min(45,percent));pane.style.width=n+"vw";document.body.style.setProperty("--pane-width",n+"vw");if(document.body.classList.contains("agent-open"))syncLayout();splitter.setAttribute("aria-valuenow",String(Math.round(n)))}splitter.addEventListener("keydown",e=>{let n=parseInt(splitter.getAttribute("aria-valuenow"),10);if(e.key==="ArrowLeft")n--;else if(e.key==="ArrowRight")n++;else if(e.key==="Home")n=25;else if(e.key==="End")n=45;else return;e.preventDefault();setPaneWidth(n)});let dragging=false;splitter.addEventListener("pointerdown",e=>{dragging=true;splitter.setPointerCapture(e.pointerId)});splitter.addEventListener("pointermove",e=>{if(!dragging)return;setPaneWidth(100*(window.innerWidth-e.clientX)/window.innerWidth)});splitter.addEventListener("pointerup",()=>dragging=false);window.addEventListener("resize",()=>{if(document.body.classList.contains("agent-open"))syncLayout()});
-const dialog=$("settingsDialog");$("settingsButton").addEventListener("click",()=>dialog.classList.add("open"));$("closeSettings").addEventListener("click",()=>dialog.classList.remove("open"));dialog.addEventListener("click",e=>{if(e.target===dialog)dialog.classList.remove("open")});$("fontButton").addEventListener("click",()=>{const big=document.documentElement.style.getPropertyValue("--zoom")==="1.2";document.documentElement.style.setProperty("--zoom",big?"1":"1.2");$("fontButton").textContent=big?"大字":"标准字"});$("primerButton").addEventListener("click",()=>{$("primerContent").hidden=false;$("primer").scrollIntoView({behavior:"smooth"})});$("primerOpen").addEventListener("click",()=>{$("primerContent").hidden=!$("primerContent").hidden;$("primerOpen").textContent=$("primerContent").hidden?"查看四段概要":"收起概要"});
+const dialog=$("settingsDialog");$("settingsButton").addEventListener("click",()=>dialog.classList.add("open"));$("closeSettings").addEventListener("click",()=>dialog.classList.remove("open"));dialog.addEventListener("click",e=>{if(e.target===dialog)dialog.classList.remove("open")});$("fontButton").addEventListener("click",()=>{const big=document.documentElement.style.getPropertyValue("--zoom")==="1.2";document.documentElement.style.setProperty("--zoom",big?"1":"1.2");$("fontButton").textContent=big?"大字":"标准字"});
 if(new URLSearchParams(location.search).get("pane")==="open")openPane();
 })();
 </script>

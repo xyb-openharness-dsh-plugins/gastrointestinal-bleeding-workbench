@@ -44,3 +44,11 @@
 **② 人工决定类。** 当前等待用户对 M2 原型 hash `de7d003113296fb248326e2dcf4472bc00f6ed012b6b51a136a3c5f0bc5c3956` 及上述模块范围作确认或提出修改。该决定是 starter `AGENTS.md` HTML 先行关口，确认前不得冻结 M3 schema 或进入相应生产业务开发。另有临床审阅责任人和首版地区/语言/人群待决定；前者不阻断开发，后者按任务要求在 M7 前确认。
 
 当前证据目录：`docs/MILESTONE-EVIDENCE.md`。测试用例：尚未创建，M9 未开始；不得据此宣称 M9 完成。
+
+## 2026-11-20 晨间续跑窗口（06:28–07:20）
+
+- 认领补签：issue #87 /claim + claim/claimed 自查补签（待追认）；未重建仓（FULL-CYCLE §1 续跑规则）。
+- M2 补齐：primer 三件套 + 双入口；probe 10/10（URL http://127.0.0.1:8126/prototypes/v0.2/index.html）、self-test exit 2、check-primer-links 17/17；G2 自动签认待追认；commit ca96323 已 push。
+- 五件门禁现状：data-dir/trial-chain/patient-create/trial-snapshot 均 exit 1（M4/M5 未做，如实红）；check-trial-matching.mjs 缺（rc.56 init 未含，M4 时从 starter 补）。
+- 面板契约（B 任务）：check-agent-pane-contract exit 0；grep newSession=3 / subscribe=2 / ensureSession=0 / Boolean(conversation)=0 / ownsSession=2（starter 基线）；实机未验证。
+- M3–M9 未开始：时间盒到点收尾。

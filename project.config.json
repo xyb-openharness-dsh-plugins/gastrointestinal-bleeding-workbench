@@ -1,0 +1,18 @@
+{
+  "packageName": "gastrointestinal-bleeding-workbench",
+  "title": "消化道出血工作台（占位名，待用户追认）",
+  "repository": "https://github.com/xyb-openharness-dsh-plugins/gastrointestinal-bleeding-workbench",
+  "description": "面向中国大陆成人患者与照护者的消化道出血求助识别与就诊信息整理工具（试点）",
+  "slug": "gastrointestinal-bleeding",
+  "targetUsers": "中国大陆·简体中文·成人患者与照护者；首版范围待用户确认",
+  "scenario": "本人或照护者观察到疑似消化道出血表现时，优先寻求急救并可选整理事实与既有就诊资料；不诊断、不分级处置、不建议用药",
+  "completion": "用户能跳过全部记录并直达紧急求助信息；若选择记录，可生成便于就诊交接的观察事实摘要",
+  "coreFlow": [
+    "首屏呈现立即求助提示与紧急求助出口",
+    "可直接结束记录并求助，或选择开始记录",
+    "按发生时间、观察事实和既有就诊资料整理摘要",
+    "预览并复制/导出交接摘要，不产生诊断或安全排除结论"
+  ],
+  "layoutMode": "business-first",
+  "businessWidth": 0.7
+}

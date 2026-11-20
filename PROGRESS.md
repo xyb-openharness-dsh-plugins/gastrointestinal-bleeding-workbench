@@ -20,6 +20,17 @@ M0–M2 原型交付完成；当前等用户确认 M2 原型后，才可进入 M
 - npm run check 当前红点：check-data-dir（M5 范围：目录选择/拒绝清单/config.root 未接）——如实保留。
 - M3–M9 未开始（时间盒到点）；下一步：M3 schema 冻结（以 4c28fa5c… 为原型基线候选，待用户追认）。
 
+## 2026-11-20 续跑（M2 补齐 → M6）
+
+- M2 ✅ primer 三件套 + 双入口；probe 10/10、self-test 红、primer-links 17/17。
+- M3 ✅ 0001 冻结（五表，无判读列）；G3 自动签认。
+- M4 ✅ 快照 250 条（相关 61）；manifest=jsonl=sqlite；失败/未配置通道如实记账。
+- M5 ✅ 服务层/写入闭环/四段试验/public；check 0 · test 19/19 · audit 40/40 · 探针 13/13；V1 自动签认。
+- M6 ✅ 0.2.0-rc.1 装进 Desktop profile web（bundle 84）；安装副本探针 13/13；V2 自动签认；V3 待用户重启。
+- M7/M8 草稿冻结（docs/release-draft/），未发布未提 PR。
+- M9 回流：starter L140–L143 + check-relevance-single-source（工作树，待并发代理提交）。
+- 下一步：用户重启 Desktop 后 V3 走查；授权后 M7/M8。
+
 ## 下一步
 
 - M3：等待用户明确确认 M2 的 hash 和功能范围；确认后冻结 schema。

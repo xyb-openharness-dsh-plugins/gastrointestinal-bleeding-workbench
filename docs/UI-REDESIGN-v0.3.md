@@ -41,5 +41,5 @@
 ## 5. 版本与确认
 
 - 原型：`prototypes/v0.3/index.html`，SHA-256 `6e18b7f6a1419f34b3446bd580ed0b2a2972c56dc0481070ede591d0eb9b282d`
-- 已同步到 `public/` 并装入 Desktop profile（0.2.0-rc.3）。
+- 已同步到 `public/` 并装入 Desktop profile（0.2.0-rc.4）。
 - **待用户确认**：本版信息架构、视觉与内容范围（确认后作为 M3 schema/生产实现的新基线；v0.2 的 hash 不再作为候选）。

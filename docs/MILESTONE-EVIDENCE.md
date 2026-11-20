@@ -26,4 +26,4 @@
 - M3：schema 0001（五表）+ freeze-contract（sha256 a606811c…）；check-schema-words 通过。
 - M4：unified-trial-mcp 实跑 6 组检索词；250 条（相关 61）；manifest=jsonl=sqlite；详情补全 55/61（6 超时记账）；四通道终态见 manifest。
 - M5：dsh 服务层 + 宿主入口 + public 七件 + src/build 链；test 19/19；check exit 0；conformance 40/40；探针 13/13 + primer 10/10；证据截图 docs/evidence/M5-*.png。
-- M6：tgz 40fc358e…；装进 app-owned profile web；bundle 登记 83→84（rc.2 覆盖升级）；安装副本逐字节一致；装机副本探针 13/13 + 10/10；`check-profile.mjs` 本包行 ✓；V3 待用户重启。
+- M6：tgz 25d5377f…；装进 app-owned profile web；bundle 登记 83→84（rc.2 覆盖升级）；安装副本逐字节一致；装机副本探针 13/13 + 10/10；`check-profile.mjs` 本包行 ✓；V3 待用户重启。

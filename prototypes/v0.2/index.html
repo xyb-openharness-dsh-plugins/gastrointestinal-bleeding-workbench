@@ -4,130 +4,206 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#f7f8fa">
-<title>消化道出血工作台 · 原型 0.2.0</title>
-<style>
-:root{color-scheme:light;--bg:#f7f8fa;--paper:#fff;--ink:#1a1a1a;--muted:#4a4a4a;--soft:#6b7280;--line:#d9dde3;--red:#a3261d;--red-dark:#781b16;--red-pale:#fff3f1;--green:#315a46;--radius:2px;--font:system-ui,-apple-system,"PingFang SC","Noto Sans SC",sans-serif;--zoom:1}
-*{box-sizing:border-box}html{font-size:calc(16px * var(--zoom));scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.55}button,input,textarea,select{font:inherit}button,a{touch-action:manipulation}button{cursor:pointer}a{color:inherit}.skip-link{position:absolute;left:-9999px;top:8px;background:#fff;padding:12px;z-index:20}.skip-link:focus{left:8px}.topbar{min-height:68px;background:var(--paper);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:18px;padding:12px 28px}.brand{font-weight:750;white-space:nowrap}.version{font-size:.72rem;font-weight:650;color:var(--muted);border:1px solid var(--line);padding:2px 7px;border-radius:2px;vertical-align:middle}.pending-brand{font-size:.68rem;color:var(--muted);border:1px dashed #7a838e;padding:2px 6px;vertical-align:middle}.top-status{color:var(--muted);font-size:.92rem;flex:1}.top-actions{display:flex;gap:8px;align-items:center}.btn{min-height:42px;border:1px solid #aeb4bc;background:white;color:var(--ink);padding:8px 13px;border-radius:var(--radius);font-weight:600}.btn:hover{background:#f1f3f5}.btn:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid #135e81;outline-offset:2px}.btn-primary{background:var(--ink);border-color:var(--ink);color:#fff}.btn-primary:hover{background:#333}.btn-emergency{background:var(--red);color:white;border:2px solid var(--red);font-weight:750;min-height:52px;padding:10px 18px}.btn-emergency:hover{background:var(--red-dark)}.layout{display:grid;grid-template-columns:216px minmax(0,1fr);max-width:1540px;margin:0 auto;min-height:calc(100vh - 68px)}body.agent-open .layout{margin-right:var(--pane-width,35vw)}.rail{border-right:1px solid var(--line);padding:24px 16px;background:#fbfbfc}.rail-label{font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;color:var(--soft);font-weight:700;margin:0 10px 12px}.nav-link{display:flex;align-items:center;gap:10px;text-decoration:none;border-left:3px solid transparent;padding:10px 12px;margin:3px 0;color:var(--muted);font-weight:600}.nav-link.active{border-left-color:var(--red);background:#fff;color:var(--ink)}.nav-num{color:var(--soft);font-variant-numeric:tabular-nums;font-size:.78rem}.rail-note{font-size:.8rem;color:var(--soft);margin:30px 10px 0}.workspace{padding:26px clamp(16px,3.2vw,48px) 56px;min-width:0;container-type:inline-size;container-name:workspace}.page-head{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:20px}.eyebrow{font-size:.76rem;color:var(--soft);font-weight:700;letter-spacing:.08em;text-transform:uppercase}.page-head h1{font-size:clamp(1.65rem,3vw,2.15rem);line-height:1.2;margin:5px 0 7px;letter-spacing:-.025em}.intro{color:var(--muted);margin:0;max-width:740px}.head-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.urgent{position:sticky;top:0;z-index:6;border:2px solid var(--red);background:var(--red-pale);padding:14px 20px;margin:18px 0 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}.urgent-copy{max-width:850px}.urgent-title{font-size:1.15rem;font-weight:800;margin:0 0 3px}.urgent p{margin:0;color:#442320}.urgent-actions{display:flex;flex-shrink:0;gap:8px;flex-wrap:wrap}.section-title{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin:24px 0 10px}.section-title h2{font-size:1.25rem;margin:0}.section-title p{margin:0;color:var(--soft);font-size:.88rem}.case-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-bottom:14px}.case-button{text-align:left;background:#fff;border:1px solid var(--line);padding:12px;min-height:88px;color:var(--ink)}.case-button:hover,.case-button[aria-pressed="true"]{border-color:#59616b;background:#f1f3f5}.case-button strong{display:block;font-size:.95rem}.case-button span{font-size:.78rem;color:var(--muted)}.demo-tag{display:inline-block;color:#4c5560;border:1px solid #aeb4bc;padding:1px 6px;font-size:.68rem;font-weight:700;letter-spacing:.03em;background:#fff}.content-grid{display:grid;grid-template-columns:minmax(0,1.18fr) minmax(280px,.82fr);gap:16px;align-items:start}.panel{background:var(--paper);border:1px solid var(--line);padding:18px;min-width:0}.panel h2,.panel h3{margin:0 0 6px}.panel-intro{color:var(--muted);font-size:.9rem;margin:0 0 15px}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{margin-bottom:13px}.field label{display:block;font-size:.88rem;font-weight:700;margin-bottom:5px}.field input,.field select,.field textarea{width:100%;border:1px solid #9299a2;background:#fff;color:var(--ink);padding:10px 11px;border-radius:var(--radius);min-height:44px}.field textarea{min-height:84px;resize:vertical}.hint{font-size:.78rem;color:var(--soft);margin:4px 0 0}.recorder{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px}.pill{display:flex;gap:7px;align-items:center;border:1px solid var(--line);padding:7px 10px;font-size:.86rem;background:white}.pill input{accent-color:#315a46}.form-actions{display:flex;gap:8px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:14px}.note{font-size:.78rem;color:var(--soft);margin:12px 0 0}.facts{display:grid;gap:10px}.fact{padding:11px 0;border-bottom:1px solid var(--line)}.fact:last-child{border-bottom:0}.fact-label{font-size:.74rem;color:var(--soft);font-weight:700;letter-spacing:.035em}.fact-value{font-size:.93rem;overflow-wrap:anywhere}.fact-source{font-size:.75rem;color:var(--muted)}.empty{color:var(--soft);border-left:3px solid var(--line);padding:10px 12px;background:#fafafa}.summary-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}.source-legend{font-size:.78rem;color:var(--muted);padding:10px;background:#f7f8fa;margin-top:12px}.footer-disclaimer{border-top:1px solid var(--line);padding:18px 0;margin-top:30px;color:var(--muted);font-size:.83rem}.agent-pane{position:fixed;z-index:10;right:0;top:68px;bottom:0;width:35vw;min-width:320px;max-width:45vw;background:#fff;border-left:1px solid #79818a;display:none;box-shadow:-10px 0 28px rgba(0,0,0,.08)}.agent-pane.open{display:flex;flex-direction:column}.splitter{position:absolute;left:-7px;top:0;height:100%;width:14px;cursor:col-resize;touch-action:none;display:flex;align-items:center;justify-content:center}.splitter::after{content:"";height:100%;width:2px;background:#7a838e}.splitter:focus-visible{outline:3px solid #135e81}.pane-head{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:1px solid var(--line);padding:18px 20px}.pane-head h2{font-size:1.02rem;margin:0}.pane-head p{font-size:.76rem;color:var(--muted);margin:4px 0 0}.pane-body{padding:18px 20px;overflow:auto}.host-badge{padding:11px;background:#f5f6f7;border-left:3px solid #66717c;font-size:.83rem;margin-bottom:15px}.host-status{border:1px solid var(--line);padding:14px;margin:14px 0}.host-status strong{display:block}.host-status p{margin:4px 0;color:var(--muted);font-size:.86rem}.host-composer{width:100%;min-height:108px;border:1px solid #939aa3;padding:10px;background:#fff}.notice{padding:12px;background:#f2f4f5;border:1px solid var(--line);font-size:.84rem}.notice.warning{background:#fff8ec;border-color:#c18b35}.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:30;background:#1a1a1a;color:#fff;padding:12px 18px;display:none;max-width:min(90vw,560px)}.toast.show{display:block}.settings{position:fixed;inset:0;background:rgba(20,24,28,.42);z-index:20;display:none;align-items:center;justify-content:center;padding:18px}.settings.open{display:flex}.settings-card{background:white;border:1px solid var(--line);max-width:620px;width:100%;padding:22px;max-height:85vh;overflow:auto}.settings-card h2{margin:0 0 8px}.settings-card .close-row{display:flex;justify-content:space-between;align-items:start}.setting-item{border-top:1px solid var(--line);padding:12px 0}.setting-item strong{display:block}.setting-item p{margin:4px 0 0;color:var(--muted);font-size:.88rem}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-@media(max-width:980px){.topbar{padding:10px 16px}.top-status{display:none}.layout{grid-template-columns:175px minmax(0,1fr)}.workspace{padding:22px 20px 40px}.case-strip{grid-template-columns:repeat(2,minmax(0,1fr))}.agent-pane{width:40vw;min-width:300px}}
-@media(max-width:760px){body.agent-open .layout{margin-right:0}.topbar{flex-wrap:wrap;min-height:unset}.brand{flex:1}.top-actions{margin-left:auto}.top-actions .btn{min-height:38px;padding:6px 9px}.layout{grid-template-columns:54px minmax(0,1fr)}.rail{padding:18px 5px}.rail-label,.nav-text,.rail-note{display:none}.nav-link{justify-content:center;padding:12px 4px}.nav-num{font-size:1rem}.page-head{display:block}.head-actions{justify-content:flex-start;margin-top:12px}.urgent{align-items:flex-start;flex-direction:column}.urgent-actions{width:100%}.content-grid{grid-template-columns:1fr}.agent-pane{top:0;width:min(88vw,430px);max-width:88vw;min-width:0}.form-row{grid-template-columns:1fr}}
-@media(max-width:480px){.workspace{padding:16px 12px 34px}.case-strip{grid-template-columns:1fr 1fr;gap:6px}.case-button{padding:9px;min-height:84px}.urgent{padding:14px}.urgent-actions .btn{flex:1}.head-actions .btn{flex:1}.panel{padding:14px}.topbar{gap:8px}.version{display:none}}
-@container workspace (max-width:620px){.page-head{display:block}.head-actions{justify-content:flex-start;margin-top:12px}.urgent{align-items:flex-start;flex-direction:column}.urgent-actions{width:100%}.urgent-actions .btn{flex:1}.content-grid,.form-row{grid-template-columns:1fr}.case-strip{grid-template-columns:repeat(2,minmax(0,1fr))}}
-body.agent-open.agent-layout-mid .topbar,body.agent-open.agent-layout-narrow .topbar{flex-wrap:wrap}body.agent-open.agent-layout-mid .top-status,body.agent-open.agent-layout-narrow .top-status{display:none}body.agent-open.agent-layout-narrow .rail-label,body.agent-open.agent-layout-narrow .nav-text,body.agent-open.agent-layout-narrow .rail-note{display:none}body.agent-open.agent-layout-narrow .nav-link{justify-content:center;padding-left:4px;padding-right:4px}body.agent-open.agent-layout-mid .urgent,body.agent-open.agent-layout-narrow .urgent{align-items:flex-start;flex-direction:column}body.agent-open.agent-layout-mid .urgent-actions,body.agent-open.agent-layout-narrow .urgent-actions{width:100%}body.agent-open.agent-layout-narrow .content-grid,body.agent-open.agent-layout-narrow .form-row{grid-template-columns:1fr}body.agent-open.agent-layout-narrow .case-strip{grid-template-columns:repeat(2,minmax(0,1fr))}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
-</style>
+<title>消化道出血工作台 · 交互原型 v0.2</title>
 <link rel="icon" href="data:,">
+<link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="primer.css">
 </head>
 <body>
 <a class="skip-link" href="#main">跳到主要内容</a>
 <header class="topbar">
-  <div class="brand">消化道出血工作台 <span class="version">0.2.0 原型</span> <span class="pending-brand">占位名 · 待用户追认</span></div>
-  <div class="top-status">就诊信息整理 · 先求助，记录可跳过</div>
+  <div class="brand">消化道出血工作台 <span class="version">v0.2.0 原型</span> <span class="pending-brand">占位名 · 待用户追认</span></div>
+  <div class="top-status" id="topStatus">合成示例数据 · 本机演示 · 不诊断、不分级、不给药</div>
   <div class="top-actions">
-    <button class="btn" id="fontButton" type="button" aria-label="切换大字">大字</button>
     <button class="btn" id="primerTopButton" type="button" data-primer-open aria-label="疾病概要：定义、医学资料规范和指南情况、治疗全景概要、发展趋势">?</button>
-    <button class="btn" id="settingsButton" type="button">⚙ 设置</button>
-    <button class="btn" id="agentToggle" type="button" aria-expanded="false">打开 AI 对话</button>
+    <button class="btn" id="fontButton" type="button" aria-label="切换大字">大字</button>
   </div>
 </header>
 <div class="layout">
   <nav class="rail" aria-label="工作台导航">
     <p class="rail-label">工作区</p>
-    <a class="nav-link active" href="#main" aria-current="page"><span class="nav-num">01</span><span class="nav-text">求助与记录</span></a>
-    <a class="nav-link" href="#summary"><span class="nav-num">02</span><span class="nav-text">交接摘要</span></a>
-    <a class="nav-link" href="#primer"><span class="nav-num">?</span><span class="nav-text">疾病概要</span></a>
+    <a class="nav-link active" href="#home" data-view-link="home"><span class="nav-num">01</span><span class="nav-text">求助与记录</span></a>
+    <a class="nav-link" href="#records" data-view-link="records"><span class="nav-num">02</span><span class="nav-text">我的记录</span></a>
+    <a class="nav-link" href="#clinical" data-view-link="clinical"><span class="nav-num">03</span><span class="nav-text">临床研究</span></a>
+    <a class="nav-link" href="#primer" data-view-link="primer"><span class="nav-num">?</span><span class="nav-text">疾病概要</span></a>
+    <a class="nav-link" href="#settings" data-view-link="settings"><span class="nav-num">04</span><span class="nav-text">设置</span></a>
     <p class="rail-note">急诊求助不需要先填写任何信息。</p>
   </nav>
   <main id="main" class="workspace">
-    <div class="page-head">
-      <div><div class="eyebrow">患者 / 照护者 · 事实整理</div><h1>先求助，再决定是否记录</h1><p class="intro">如果现在有人需要紧急帮助，请直接使用急诊求助入口。下方记录完全可选，也可以留空后再继续。</p></div>
-      <div class="head-actions"><button class="btn" type="button" id="copyQuestion">复制就诊交接问题</button><button class="btn" type="button" data-primer-open>疾病概要 ?</button></div>
+
+    <div class="profilebar" aria-label="患者档案">
+      <div class="profile-current">
+        <span class="eyebrow">当前档案</span>
+        <strong id="profileName">载入中…</strong>
+        <span class="demo-tag" id="profileTag" hidden>合成示例</span>
+        <span id="profileMeta" class="profile-meta"></span>
+      </div>
+      <div class="profile-actions">
+        <label class="sr-only" for="profileSelect">切换档案</label>
+        <select id="profileSelect" class="profile-select"></select>
+        <button class="btn btn-primary" type="button" id="newProfileButton">＋ 新建我的档案</button>
+      </div>
     </div>
-    <section class="urgent" aria-labelledby="urgentTitle">
-      <div class="urgent-copy"><p class="urgent-title" id="urgentTitle">出现疑似出血表现或感到情况紧急，请立即求助</p><p>例如呕血、咖啡渣样呕吐、黑便或便血。不要等待填写记录；本页不会判断出血量或排除危险。</p></div>
-      <div class="urgent-actions"><a class="btn btn-emergency" href="tel:120" aria-label="拨打 120 急救电话">拨打 120</a><button class="btn" id="skipRecord" type="button">跳过记录</button></div>
+
+    <!-- ============ 视图 1：求助与记录 ============ -->
+    <section class="view" id="view-home" aria-labelledby="homeTitle">
+      <div class="page-head">
+        <div><div class="eyebrow">患者 / 照护者 · 事实整理</div><h1 id="homeTitle">先求助，再决定是否记录</h1>
+        <p class="intro">如果现在有人需要紧急帮助，请直接使用急诊求助入口。下方记录完全可选，也可以留空后再继续。</p></div>
+      </div>
+      <section class="urgent" aria-labelledby="urgentTitle">
+        <div class="urgent-copy"><p class="urgent-title" id="urgentTitle">出现疑似出血表现或感到情况紧急，请立即求助</p><p>例如呕血、咖啡渣样呕吐、黑便或便血。不要等待填写记录；本页不会判断出血量，也不能排除危险。</p></div>
+        <div class="urgent-actions"><a class="btn btn-emergency" href="tel:120" aria-label="拨打 120 急救电话">拨打 120</a><button class="btn" id="skipRecord" type="button">跳过记录</button></div>
+      </section>
+
+      <div class="content-grid">
+        <section class="panel" aria-labelledby="recordTitle">
+          <h2 id="recordTitle">可选：记录观察到的事实</h2>
+          <p class="panel-intro">只记亲见或听到的内容。未知可以留空；记录不会影响求助入口。</p>
+          <div class="kind-strip" id="kindStrip" role="group" aria-label="选择记录类型"></div>
+          <form id="recordForm" autocomplete="off">
+            <div id="recordFields" class="form-fields"></div>
+            <div class="form-actions">
+              <button class="btn btn-primary" type="submit" id="recordSubmit">保存记录</button>
+              <button class="btn" type="button" id="clearForm">清空本次输入</button>
+            </div>
+            <p class="note" id="recordNote">记录会写进当前档案；合成示例档案只在演示数据里，不写库。</p>
+          </form>
+        </section>
+
+        <section class="panel" id="summaryPanel" aria-labelledby="summaryTitle" aria-live="polite">
+          <div class="section-title" style="margin-top:0"><h2 id="summaryTitle">就诊交接摘要</h2><span class="demo-tag" id="summaryDemoTag" hidden>合成示例</span></div>
+          <p class="panel-intro">仅显示当前档案里已记录的事实。此摘要不是诊断，也不能用来判断是否安全。</p>
+          <div id="summaryFacts" class="facts"><div class="empty">尚无记录。可以直接跳过，或只添加目前确定的事实。</div></div>
+          <div class="summary-actions">
+            <button class="btn btn-primary" type="button" id="copySummary">复制摘要</button>
+            <button class="btn" type="button" id="downloadSummary">下载文本</button>
+          </div>
+          <div class="source-legend">来源说明：每条记录标明由谁记录、信息来自哪里。缺失信息保持空白，不表示没有症状。</div>
+        </section>
+      </div>
     </section>
 
-    <div class="section-title"><h2>选择一个模拟情境</h2><p><span class="demo-tag">全部为合成数据</span></p></div>
-    <div class="case-strip" role="group" aria-label="合成情境">
-      <button class="case-button" data-case="sudden" type="button" aria-pressed="true"><strong>突发，信息不全</strong><span>事件刚发生 · 时间待补</span></button>
-      <button class="case-button" data-case="caregiver" type="button" aria-pressed="false"><strong>照护者代记</strong><span>家属观察 · 标记事实来源</span></button>
-      <button class="case-button" data-case="history" type="button" aria-pressed="false"><strong>既往背景</strong><span>有既往就诊资料</span></button>
-      <button class="case-button" data-case="followup" type="button" aria-pressed="false"><strong>就诊后随访</strong><span>记录就诊后变化</span></button>
-    </div>
+    <!-- ============ 视图 2：我的记录 ============ -->
+    <section class="view" id="view-records" aria-labelledby="recordsTitle" hidden>
+      <div class="page-head"><div><div class="eyebrow">本机记录</div><h1 id="recordsTitle">我的记录</h1>
+        <p class="intro">按类型整理，可回看、可删除、可切换私密。记录内容只在本机。</p></div></div>
+      <div class="filter-row">
+        <label class="sr-only" for="recordKindFilter">按类型筛选</label>
+        <select id="recordKindFilter"><option value="">全部类型</option></select>
+        <span class="filter-count" id="recordCount"></span>
+      </div>
+      <div id="recordsList" class="records-list" aria-live="polite"></div>
+    </section>
 
-    <div class="content-grid">
-      <section class="panel" aria-labelledby="recordTitle">
-        <h2 id="recordTitle">可选：记录观察到的事实</h2><p class="panel-intro">只记亲见或听到的内容。未知可以留空；记录不会影响求助入口。</p>
-        <div class="recorder" role="group" aria-label="记录人身份"><label class="pill"><input type="radio" name="recordRole" value="本人" checked> 本人记录</label><label class="pill"><input type="radio" name="recordRole" value="照护者"> 照护者代记</label></div>
-        <form id="factForm">
-          <div class="form-row">
-            <div class="field"><label for="when">发生时间</label><input id="when" name="when" placeholder="不确定可留空" autocomplete="off"><p class="hint">例如：今天约 14:30；可以写大概时间</p></div>
-            <div class="field"><label for="source">信息来源</label><select id="source" name="source"><option>本人亲见</option><option>患者告知</option><option>照护者亲见</option><option>既有就诊资料</option><option>来源不确定</option></select></div>
+    <!-- ============ 视图 3：临床研究 ============ -->
+    <section class="view" id="view-clinical" aria-labelledby="clinicalTitle" hidden>
+      <div class="page-head"><div><div class="eyebrow">临床试验 · 候选线索</div><h1 id="clinicalTitle">临床研究</h1>
+        <p class="intro">四段链路：建档（只有已确认字段参与）→ 检索 → 匹配 → 收藏。结果只是候选线索，不是入组资格。</p></div></div>
+      <div class="tabs" role="tablist" aria-label="临床研究子页">
+        <button class="tab active" role="tab" aria-selected="true" data-clinical-tab="match" id="tab-match" aria-controls="clinical-match">建档与匹配</button>
+        <button class="tab" role="tab" aria-selected="false" data-clinical-tab="search" id="tab-search" aria-controls="clinical-search">检索</button>
+        <button class="tab" role="tab" aria-selected="false" data-clinical-tab="saved" id="tab-saved" aria-controls="clinical-saved">收藏</button>
+      </div>
+
+      <div class="clinical-pane" id="clinical-match" role="tabpanel" aria-labelledby="tab-match">
+        <div class="pool-note" id="matchPoolNote">候选池载入中…</div>
+        <div class="content-grid">
+          <section class="panel" aria-labelledby="trialProfileTitle">
+            <h2 id="trialProfileTitle">基础档案（只用于匹配）</h2>
+            <p class="panel-intro">只有这里明确填写的字段参与匹配；不填 = 待确认，不按阴性计。药物靶点不参与。</p>
+            <form id="trialProfileForm">
+              <div class="form-row">
+                <div class="field"><label for="tpAge">年龄</label><input id="tpAge" name="age" inputmode="numeric" placeholder="不确定可留空"></div>
+                <div class="field"><label for="tpSex">性别</label><select id="tpSex" name="sex"><option value="">不填</option><option value="female">女</option><option value="male">男</option></select></div>
+              </div>
+              <div class="field"><label for="tpDiagnosis">医生是否明确说过「消化道出血」</label><select id="tpDiagnosis" name="diagnosisConfirmed"><option value="">不填（待确认）</option><option value="yes">说过</option><option value="no">没有/不确定</option></select></div>
+              <fieldset class="field chip-field"><legend>记录过的出血表现</legend><div class="chips" id="tpSigns"></div></fieldset>
+              <fieldset class="field chip-field"><legend>正在使用的抗栓药（按原话）</legend><div class="chips" id="tpMeds"></div></fieldset>
+              <div class="form-row">
+                <div class="field"><label for="tpPregnant">是否妊娠/哺乳（如适用）</label><select id="tpPregnant" name="pregnant"><option value="">不填</option><option value="no">否</option><option value="yes">是</option></select></div>
+                <div class="field"><label for="tpNote">备注（可选）</label><input id="tpNote" name="note" placeholder="例如：医生提过的关键词"></div>
+              </div>
+              <div class="form-actions"><button class="btn btn-primary" type="submit">保存基础档案</button><span class="hint" id="trialProfileStatus"></span></div>
+            </form>
+          </section>
+          <section class="panel" aria-labelledby="matchListTitle">
+            <div class="section-title" style="margin-top:0"><h2 id="matchListTitle">匹配卡</h2><span class="demo-tag" id="matchModeTag" hidden>演示池</span></div>
+            <div class="filter-row"><label class="sr-only" for="matchKeyword">关键词</label><input id="matchKeyword" placeholder="按标题/登记号过滤（可留空）"><button class="btn" type="button" id="matchRefresh">刷新匹配</button></div>
+            <p class="panel-intro" id="matchSummary">载入中…</p>
+            <div id="matchList" class="match-list"></div>
+            <div class="source-legend">匹配卡四件套：分数方块（或「可对照项不足 2 条」）+ 「n / m 项对得上 · k 项待确认」+ 逐条证据链（✕/? 排前）+ 「不是入组资格」。登记状态未核实，以官方登记页为准。</div>
+          </section>
+        </div>
+      </div>
+
+      <div class="clinical-pane" id="clinical-search" role="tabpanel" aria-labelledby="tab-search" hidden>
+        <div class="panel">
+          <h2>检索（按条件排，不掺分数）</h2>
+          <p class="panel-intro">关键词 + 研究类型 + 状态 + 只看相关。结果不显示百分数；点「收藏」只保存登记元信息。</p>
+          <div class="filter-row">
+            <label class="sr-only" for="trialKeyword">关键词</label><input id="trialKeyword" placeholder="关键词（标题 / 登记号 / 机构）">
+            <label class="sr-only" for="trialStatus">状态</label><select id="trialStatus"><option value="">全部状态</option></select>
+            <label class="sr-only" for="trialStudyType">研究类型</label><select id="trialStudyType"><option value="">全部类型</option></select>
+            <label class="check-pill"><input type="checkbox" id="trialRelevantOnly" checked> 只看相关</label>
+            <button class="btn" type="button" id="trialSearchButton">检索</button>
           </div>
-          <div class="field"><label for="facts">观察到的情况</label><textarea id="facts" name="facts" placeholder="用自己的话记录看到或听到的情况，不需要判断原因"></textarea><p class="hint">不要估算出血量；不确定的地方可写“不清楚”。</p></div>
-          <div class="field"><label for="background">既往背景（可选）</label><input id="background" name="background" placeholder="例如：用户自述有既往相关就诊史"><p class="hint">只记录已知背景，不填写用药建议。</p></div>
-          <div class="field"><label for="documents">已有资料名称 / 日期（可选）</label><input id="documents" name="documents" placeholder="例如：出院记录，2026-05（仅名称）"></div>
-          <div class="form-actions"><button class="btn btn-primary" type="submit">添加到摘要</button><button class="btn" type="button" id="clearForm">清空本次输入</button></div>
-          <p class="note">原型演示：输入仅保存在当前页面内存中，刷新会清空；请勿填写真实患者身份信息。</p>
-        </form>
+          <div class="pool-note" id="searchPoolNote">候选池载入中…</div>
+          <div id="searchResults" class="search-results"></div>
+        </div>
+      </div>
+
+      <div class="clinical-pane" id="clinical-saved" role="tabpanel" aria-labelledby="tab-saved" hidden>
+        <div class="panel">
+          <h2>收藏</h2>
+          <p class="panel-intro">只保存本机的登记元信息与三态（在跟 / 准备问 / 已归档）。快照没有状态时间线，不画进度条。</p>
+          <div id="savedList" class="saved-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 视图 4：疾病概要入口 ============ -->
+    <section class="view" id="view-primer" aria-labelledby="primerTitle" hidden>
+      <div class="page-head"><div><div class="eyebrow">疾病与资料</div><h1 id="primerTitle">疾病概要：消化道出血是什么？</h1>
+        <p class="intro">四段整页说明：定义 → 医学资料规范和指南情况 → 目前治疗全景概要 → 发展趋势。每段带来源与取得状态；未取得原件如实标注。</p></div></div>
+      <section class="panel">
+        <div class="section-title" style="margin-top:0"><h2>打开四段整页概要</h2><button class="btn btn-primary" type="button" data-primer-open>打开疾病概要</button></div>
+        <p class="panel-intro">面板为整页视图（不是弹窗）：「返回」与「关闭」是两个独立入口；Esc 与浏览器返回键只退一层；关闭后回到本页原位置。</p>
+        <p class="note">入口共两处：顶栏「?」与本页按钮，打开同一个整页面板。医学内容待临床审阅，未取得中国规范原件前保持待核。</p>
       </section>
-      <section class="panel" id="summary" aria-labelledby="summaryTitle" aria-live="polite">
-        <div class="section-title" style="margin-top:0"><h2 id="summaryTitle">就诊交接摘要</h2><span class="demo-tag">模拟</span></div>
-        <p class="panel-intro">仅显示记录者提供的事实。此摘要不是诊断，也不能用来判断是否安全。</p>
-        <div id="factsList" class="facts"><div class="empty">尚无记录。可以直接跳过，或只添加目前确定的事实。</div></div>
-        <div class="summary-actions"><button class="btn btn-primary" type="button" id="copySummary">复制摘要</button><button class="btn" type="button" id="downloadSummary">下载文本</button></div>
-        <div class="source-legend">来源说明：每条记录标明由谁记录、信息来自哪里。缺失信息会保持空白，不表示没有症状。</div>
+    </section>
+
+    <!-- ============ 视图 5：设置 ============ -->
+    <section class="view" id="view-settings" aria-labelledby="settingsTitle" hidden>
+      <div class="page-head"><div><div class="eyebrow">本机设置</div><h1 id="settingsTitle">设置</h1>
+        <p class="intro">只显示真实状态：数据目录、临床数据库通道终态、隐私口径。不显示编造的路径或未验证的结论。</p></div></div>
+      <section class="panel">
+        <h2>数据目录</h2>
+        <p class="panel-intro">资料目录由顶栏「配置目录」选择（宿主目录选择器），主目录本身 / 桌面 / 下载根目录 / tmp 会被拒绝；服务端二次校验。</p>
+        <p class="fact-value" id="settingsDataDir">未连接服务时不可用（演示态）</p>
       </section>
-    </div>
-    <section id="primer" class="panel" style="margin-top:16px" aria-labelledby="primerTitle"><div class="section-title" style="margin-top:0"><h2 id="primerTitle">疾病概要：消化道出血是什么？</h2><button class="btn" type="button" data-primer-open>打开整页概要</button></div><p class="panel-intro">四段概念性说明（定义 · 医学资料规范和指南情况 · 目前治疗全景概要 · 发展趋势），整页打开；每段带来源与取得状态，未取得原件如实标注，待临床审阅。本台不提供治疗方案或个体判断。</p><p class="note">入口共两处：顶栏「?」按钮与本卡片按钮，打开同一个整页面板。</p></section>
-    <div class="footer-disclaimer">本工具用于整理观察事实，不诊断、不分级、不建议用药，也不判断出血量是否安全。遇到紧急情况，请先寻求急诊帮助。</div>
+      <section class="panel" style="margin-top:14px">
+        <h2>临床数据库（逐通道终态）</h2>
+        <p class="panel-intro">只有「已查询且有结果 / 已查询无结果」算查过；失败、超时、未配置一律如实列出，不算覆盖率。「相关 0」不等于「没有研究」——检索词命中才进池。</p>
+        <div id="settingsChannels" class="channel-list"><div class="empty">载入中…</div></div>
+      </section>
+      <section class="panel" style="margin-top:14px">
+        <h2>隐私</h2>
+        <ul class="plain-list">
+          <li>记录只写本机资料目录的 sqlite；导出 / 摘要不含私密记录（私密仅本人可见）。</li>
+          <li>AI 对话由宿主原生面板提供；草稿只填入、不自动发送。是否把摘要带入会话由你点击决定。</li>
+          <li>本台不诊断、不分级、不建议用药；分级或处置以接诊医生为准。</li>
+        </ul>
+      </section>
+    </section>
+
+    <div class="footer-disclaimer">本工具用于整理观察事实，不诊断、不分级、不建议用药，也不判断出血量是否安全。遇到紧急情况，请先寻求急诊帮助。合成示例数据仅用于演示。</div>
   </main>
 </div>
-<aside class="agent-pane" id="agentPane" aria-label="DSH 原生 Agent 面板状态演示" aria-hidden="true">
-  <div class="splitter" id="splitter" role="separator" aria-orientation="vertical" aria-label="调整 Agent 面板宽度" aria-valuemin="25" aria-valuemax="45" aria-valuenow="35" tabindex="0"></div>
-  <div class="pane-head"><div><h2>AI 对话 · 宿主状态</h2><p>原生面板配套 UI 示意</p></div><button class="btn" type="button" id="hideAgent">隐藏面板</button></div>
-  <div class="pane-body"><div class="host-badge"><strong>宿主模拟 / 非真实 DSH 会话</strong><br>此页面没有连接 DSH Desktop，不会创建或发送消息。</div>
-    <div class="host-status"><strong>状态：演示模式 · 未连接</strong><p>正式接入需使用目标 Desktop 合同中的 newSession 与 subscribe。当前不代表会话已绑定。</p><button class="btn" type="button" id="simulateConnect">查看连接失败状态</button></div>
-    <h3>带入内容预览</h3><p class="panel-intro">仅可预览本页已确认记录；点击按钮不会发送。</p><textarea class="host-composer" id="agentDraft" readonly placeholder="添加事实后，可预览摘要文字"></textarea>
-    <div class="notice warning" id="draftConflict" hidden><strong>检测到宿主原有草稿</strong><br>原有内容已保留。此演示不会覆盖，也不会发送。正式实现需由用户明确选择追加、复制或取消。</div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px"><button class="btn btn-primary" type="button" id="prepareDraft">更新预览</button><button class="btn" type="button" id="showConflict">演示草稿冲突</button></div>
-    <p class="note">主工作区记录状态与该模拟面板相互独立。隐藏面板不会清空记录。</p>
-  </div>
-</aside>
-<div class="settings" id="settingsDialog" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
-  <div class="settings-card"><div class="close-row"><div><h2 id="settingsTitle">工作台设置</h2><p class="panel-intro">原型状态，不保存真实配置或密钥。</p></div><button class="btn" id="closeSettings" type="button">关闭</button></div>
-    <div class="setting-item"><strong>患者资料目录</strong><p>未连接 · 原型不会访问本地文件。正式设置需要用户选择并确认。</p></div>
-    <div class="setting-item"><strong>指南与数据来源</strong><p>研究记录见 docs/USER-RESEARCH.md；版本与核验状态待 M4 填充。</p></div>
-    <div class="setting-item"><strong>隐私</strong><p>原型数据只在当前页面内存。请勿填入真实身份信息。</p></div>
-  </div>
-</div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="demo-data.js"></script>
 <script src="primer-data.js"></script>
 <script src="primer.js"></script>
-<script>
-(()=>{
-const samples={
- sudden:{when:"今天约 14:30（合成）",facts:"观察到呕吐物颜色偏深；是否含血不确定。",source:"本人亲见",background:"",documents:""},
- caregiver:{when:"昨天晚间（合成）",facts:"照护者看到患者排出颜色很深的粪便；具体外观不确定。",source:"照护者亲见",background:"用户自述患者有既往就诊史（合成）",documents:"既往出院记录，日期不详（合成）"},
- history:{when:"今天上午（合成）",facts:"患者告知出现黑色大便；次数未记录。",source:"患者告知",background:"用户自述曾因消化性溃疡就诊（合成）",documents:"胃镜报告名称，2025 年（合成）"},
- followup:{when:"就诊后第二天（合成）",facts:"照护者记录患者再次排便，颜色与前次不同；具体情况待患者补充。",source:"照护者亲见",background:"已于合成医院就诊",documents:"就诊记录，日期待补（合成）"}
-};
-let events=[];const $=id=>document.getElementById(id);const toast=msg=>{const t=$("toast");t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2600)};
-function textSummary(){if(!events.length)return"暂无已记录事实。";return events.map((e,i)=>`${i+1}. 时间：${e.when||"未知/未填写"}\n   事实：${e.facts||"未填写"}\n   记录者：${e.role}\n   信息来源：${e.source}\n   既往背景：${e.background||"未填写"}\n   既有资料：${e.documents||"未填写"}`).join("\n\n")}
-function render(){const list=$("factsList");if(!events.length){list.innerHTML='<div class="empty">尚无记录。可以直接跳过，或只添加目前确定的事实。</div>';$("agentDraft").value="";return}list.innerHTML=events.map((e,i)=>`<article class="fact"><div class="fact-label">记录 ${i+1} · ${escapeHtml(e.role)}</div><div class="fact-value"><b>时间：</b>${escapeHtml(e.when||"未知/未填写")}<br><b>观察事实：</b>${escapeHtml(e.facts||"未填写")}</div><div class="fact-source">信息来源：${escapeHtml(e.source)}${e.background?` · 背景：${escapeHtml(e.background)}`:""}${e.documents?` · 资料：${escapeHtml(e.documents)}`:""}</div></article>`).join("");$("agentDraft").value=textSummary()}
-function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
-document.querySelectorAll(".case-button").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".case-button").forEach(x=>x.setAttribute("aria-pressed","false"));b.setAttribute("aria-pressed","true");const s=samples[b.dataset.case];$("when").value=s.when;$("facts").value=s.facts;$("source").value=s.source;$("background").value=s.background;$("documents").value=s.documents;document.querySelector(`input[name="recordRole"][value="${b.dataset.case==="caregiver"||b.dataset.case==="followup"?"照护者":"本人"}"]`).checked=true;toast("已载入合成情境，可修改后再添加。") }));
-$("factForm").addEventListener("submit",e=>{e.preventDefault();const role=document.querySelector('input[name="recordRole"]:checked').value;events.push({when:$("when").value.trim(),facts:$("facts").value.trim(),source:$("source").value,background:$("background").value.trim(),documents:$("documents").value.trim(),role});render();toast("已加入当前页面摘要（原型内存）。")});
-$("clearForm").addEventListener("click",()=>{$("factForm").reset();toast("本次输入已清空。")});$("skipRecord").addEventListener("click",()=>{toast("已跳过记录。急诊求助入口仍可使用；需要时点击“拨打 120”。")});
-async function copy(text){try{await navigator.clipboard.writeText(text);toast("已复制到剪贴板。")}catch{const x=document.createElement("textarea");x.value=text;document.body.append(x);x.select();document.execCommand("copy");x.remove();toast("已尝试复制；若失败，可手动选择摘要文本。")}}
-$("copySummary").addEventListener("click",()=>copy("消化道出血就诊事实摘要（用户记录；非诊断）\n"+textSummary()));$("copyQuestion").addEventListener("click",()=>copy("就诊交接时可补充：发生时间/先后顺序；观察到的原样事实；由谁观察或转述；既往就诊资料名称和日期。未知项可留空。"));
-$("downloadSummary").addEventListener("click",()=>{const blob=new Blob(["消化道出血就诊事实摘要（用户记录；非诊断）\n\n"+textSummary()],{type:"text/plain;charset=utf-8"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="就诊事实摘要-模拟.txt";a.click();URL.revokeObjectURL(a.href);toast("已生成文本文件。")});
-const pane=$("agentPane"),toggle=$("agentToggle");function syncLayout(){const w=window.innerWidth-(window.innerWidth<=760?0:pane.getBoundingClientRect().width);document.body.classList.toggle("agent-layout-mid",w<=760&&w>620);document.body.classList.toggle("agent-layout-narrow",w<=620)}function openPane(){pane.classList.add("open");document.body.classList.add("agent-open");document.body.style.setProperty("--pane-width",pane.style.width||"35vw");syncLayout();pane.setAttribute("aria-hidden","false");toggle.textContent="隐藏 AI 对话";toggle.setAttribute("aria-expanded","true")}function hidePane(){pane.classList.remove("open");document.body.classList.remove("agent-open","agent-layout-mid","agent-layout-narrow");pane.setAttribute("aria-hidden","true");toggle.textContent="打开 AI 对话";toggle.setAttribute("aria-expanded","false")}toggle.addEventListener("click",()=>pane.classList.contains("open")?hidePane():openPane());$("hideAgent").addEventListener("click",hidePane);$("prepareDraft").addEventListener("click",()=>{$("agentDraft").value=textSummary();toast("预览已更新；没有连接真实会话，也没有发送。")});$("simulateConnect").addEventListener("click",()=>toast("演示状态：宿主不可用。真实连接未验证。"));$("showConflict").addEventListener("click",()=>{$("draftConflict").hidden=false;toast("演示冲突：保留宿主原稿，不覆盖。")});
-const splitter=$("splitter");function setPaneWidth(percent){const n=Math.max(25,Math.min(45,percent));pane.style.width=n+"vw";document.body.style.setProperty("--pane-width",n+"vw");if(document.body.classList.contains("agent-open"))syncLayout();splitter.setAttribute("aria-valuenow",String(Math.round(n)))}splitter.addEventListener("keydown",e=>{let n=parseInt(splitter.getAttribute("aria-valuenow"),10);if(e.key==="ArrowLeft")n--;else if(e.key==="ArrowRight")n++;else if(e.key==="Home")n=25;else if(e.key==="End")n=45;else return;e.preventDefault();setPaneWidth(n)});let dragging=false;splitter.addEventListener("pointerdown",e=>{dragging=true;splitter.setPointerCapture(e.pointerId)});splitter.addEventListener("pointermove",e=>{if(!dragging)return;setPaneWidth(100*(window.innerWidth-e.clientX)/window.innerWidth)});splitter.addEventListener("pointerup",()=>dragging=false);window.addEventListener("resize",()=>{if(document.body.classList.contains("agent-open"))syncLayout()});
-const dialog=$("settingsDialog");$("settingsButton").addEventListener("click",()=>dialog.classList.add("open"));$("closeSettings").addEventListener("click",()=>dialog.classList.remove("open"));dialog.addEventListener("click",e=>{if(e.target===dialog)dialog.classList.remove("open")});$("fontButton").addEventListener("click",()=>{const big=document.documentElement.style.getPropertyValue("--zoom")==="1.2";document.documentElement.style.setProperty("--zoom",big?"1":"1.2");$("fontButton").textContent=big?"大字":"标准字"});
-if(new URLSearchParams(location.search).get("pane")==="open")openPane();
-})();
-</script>
+<script src="app.js"></script>
 </body>
 </html>

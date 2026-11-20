@@ -16,3 +16,10 @@
 未验证项：用户/临床审阅、原生 DSH 实机、真实拨号。
 下一步具体动作/命令：用户确认 M2 原型 SHA-256 `de7d003...c3956` 后，才冻结 schema 并进入 M3。
 用户已确认的偏好与授权：求助在首屏、记录可整体跳过、不诊断/分级/给药、四类合成场景、品牌占位。
+
+## M3–M6 执行记录（2026-11-20）
+
+- M3 ✅ 0001 冻结（sha256 a606811caf8b…），check-schema-words 通过。
+- M4 ✅ 快照 250 条（相关 61），manifest/jsonl/sqlite 三处一致；四通道终态如实入 manifest。
+- M5 ✅ dsh 服务层（store/workbench/server/static/index/demo/trial-match）+ public 七件 + src/build 链 + 四条测试（19 用例）+ 五件门禁入 check；npm run check exit 0。
+- M6 ⏳ pack → profile 安装 → check-profile（界面真机 V3 待用户重启核验）。

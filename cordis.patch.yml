@@ -1,3 +1,6 @@
 - insert:
     - id: gastrointestinal-bleeding-main
       name: "gastrointestinal-bleeding-workbench"
+      # config.root 指向 Desktop 工作台宿主目录（dshHomePath 由宿主解析）
+      config:
+        root: !!js dshHomePath('gastrointestinal-bleeding')

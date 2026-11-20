@@ -54,3 +54,10 @@ SQLite 或 JSON 的实际运行条件与备选方案：...
 领域实体/证据/主体/状态/版本是稳定核心；UI通过命令用例写入和版本化读模型读取。不能按Tab复制事实或把整页state当业务存储。列出：页面拆合/移位、流程先后改变、新增普通指标、来源更正、候选→接受、未知字段/枚举、隐私派生与快照失效时需要改哪层、是否迁移、兼容/恢复方式。
 
 HTML确认前是候选模型/模拟adapter，确认对应模块后复核并落实生产schema/API；仅布局/字段顺序变化不能迫使用户清库。JSON扩展有类型/schema/version/上限，核心关系保留外键与约束；写入有revision/幂等/事务。记录真实迁移/并发/故障证据，未执行标未验证。
+
+## 0001 数据模型（M3，2026-11-20 冻结）
+
+- 表：`subjects` / `subject_records` / `trial_profile` / `saved_trial` / `app_setting`；sha256 见 `schema/freeze-contract.md`。
+- 八类记录：bleed / lab / treatment / question / hospital / report / doc / mind（服务层 `RECORD_KINDS` 与前端同一清单）。
+- 试验基础档案：`bleeding_signs_json`（呕血/咖啡渣样呕吐/黑便/血便或便血/头晕或晕厥/无明显表现）与 `antithrombotic_json`（抗凝药/抗血小板药/NSAIDs/其他/未用药/不清楚）。
+- 无判读列（`check-schema-words` 断言通过）；派生符合度不入库。

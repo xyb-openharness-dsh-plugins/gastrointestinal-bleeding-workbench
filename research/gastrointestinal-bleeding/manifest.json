@@ -1,0 +1,138 @@
+{
+  "topic": "gastrointestinal-bleeding",
+  "relevantCount": 61,
+  "relevantRule": "标题命中 gastrointestinal bleed / upper GI bleed / peptic ulcer bleed / GI bleeding / 消化道出血 / 胃肠道出血 / 消化性溃疡出血 / ulcer bleeding 任意一词记相关；只按标题，不做全文判读。GI 缩写不作为独立词匹配，避免误计无关研究",
+  "disease": "消化道出血（Gastrointestinal Bleeding，并发症试点 CX-001；含上消化道出血与消化性溃疡出血语境）",
+  "year": "2026",
+  "snapshotDate": "2026-11-20",
+  "tool": "unified-trial-mcp @ /Users/qinxiaoqiang/Downloads/unified_search_trials/dist/src/cli/main.js",
+  "queries": [
+    {
+      "keyword": "gastrointestinal bleeding",
+      "note": "英文通用名（登记库最常用写法）"
+    },
+    {
+      "keyword": "upper gastrointestinal bleeding",
+      "note": "上消化道出血限定"
+    },
+    {
+      "keyword": "peptic ulcer bleeding",
+      "note": "消化性溃疡出血（本病种最常见的出血原因）"
+    },
+    {
+      "keyword": "消化道出血",
+      "note": "中文标准名"
+    },
+    {
+      "keyword": "上消化道出血",
+      "note": "中文上消化道限定"
+    },
+    {
+      "keyword": "消化性溃疡出血",
+      "note": "中文溃疡出血语境"
+    }
+  ],
+  "perSourceLimit": 200,
+  "recordCount": 250,
+  "dbCount": 250,
+  "sourceStatusRows": 36,
+  "sourceStates": [
+    {
+      "source_id": "chictr_online",
+      "state": "failed",
+      "queried": 0
+    },
+    {
+      "source_id": "chictr_pancreatic_archive",
+      "state": "unconfigured",
+      "queried": 0
+    },
+    {
+      "source_id": "chinadrugtrials",
+      "state": "failed",
+      "queried": 0
+    },
+    {
+      "source_id": "ctv",
+      "state": "ready",
+      "queried": 1
+    },
+    {
+      "source_id": "ictrp",
+      "state": "truncated",
+      "queried": 1
+    },
+    {
+      "source_id": "xyb_chinadrugtrials_archive",
+      "state": "ready",
+      "queried": 1
+    }
+  ],
+  "queriedSources": [
+    "ctv",
+    "ictrp",
+    "xyb_chinadrugtrials_archive"
+  ],
+  "unqueriedSources": [
+    "chictr_online",
+    "chictr_pancreatic_archive",
+    "chinadrugtrials"
+  ],
+  "truncatedSources": [
+    "ictrp"
+  ],
+  "honesty": {
+    "queriedMeaning": "只有 SUCCESS 与 NO_RESULTS 表示该来源真的被查询并给出答案；其余终态一律不代表\"没有试验\"",
+    "offlineCorpora": "ChiCTR 离线语料与 XYB 归档仅覆盖胰腺癌；消化道出血不适用，落 unconfigured 而不是 0 条",
+    "statusWording": "登记 ≠ 有效 ≠ 安全 ≠ 可入组；状态一律「登记状态，未核实」",
+    "mergeRule": "仅同一登记号合并，其余来源并排保留；标题/机构/日期相似不作为合并依据",
+    "coverageNote": "0 条结果必须带该来源自己的覆盖声明（见 source_statuses.coverage）"
+  },
+  "files": {
+    "trials-2026.jsonl": {
+      "sha256": "803eb0ce285b89352e46bac7e63db890c1a4883db7d39a8d47969881c8c639f4"
+    },
+    "gastrointestinal_bleeding_trials_2026.sqlite": {
+      "sha256": "b241d57f3e4444096edbe8a3d6da399a139d288529afb35710ab98672db23b19"
+    }
+  },
+  "detail": {
+    "enriched": 55,
+    "failed": 6,
+    "failedRecords": [
+      {
+        "recordId": "ictrp:NCT01123031",
+        "error": "MCP timeout: tools/call"
+      },
+      {
+        "recordId": "ictrp:NCT01138969",
+        "error": "MCP timeout: tools/call"
+      },
+      {
+        "recordId": "ictrp:NCT01180179",
+        "error": "MCP timeout: tools/call"
+      },
+      {
+        "recordId": "ictrp:NCT01275937",
+        "error": "MCP timeout: tools/call"
+      },
+      {
+        "recordId": "ictrp:NCT02152904",
+        "error": "MCP timeout: tools/call"
+      },
+      {
+        "recordId": "ictrp:TCTR20260506007",
+        "error": "MCP timeout: tools/call"
+      }
+    ],
+    "fields": [
+      "conditions",
+      "phase",
+      "minAge",
+      "maxAge",
+      "gender"
+    ],
+    "note": "只对相关记录拉详情；失败记录字段留 NULL，未猜。详情来自单来源，字段以官方页为准。",
+    "fetchedAt": "2026-11-20T02:39:09.979Z"
+  }
+}

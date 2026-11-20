@@ -8,3 +8,9 @@
   - 未知即 NULL；demo 与真实档案以 is_demo 区分；派生符合度不入库。
   - 冻结后只增不改：任何结构变更走 0002+，并在此追加新迁移的 sha256。
 - 迁移方式：dsh/store.js 按编号顺序执行，schema_migrations 记账；重复执行幂等。
+
+## 0002 增量迁移（2026-11-20）
+
+- 文件：`schema/0002_trial_profile_comorbidities.sql`
+- sha256：`ac1247831a9276457857d2e2a3a6ade060cc1d5a6ac887a3b4d28c1c15a8bddb`
+- 内容：trial_profile 增加 liver_disease / heart_failure（INTEGER，NULL=未登记），用于评分变量对照；不改 0001。

@@ -48,12 +48,13 @@ const root = opt('root', dirname(db))
 const { createHandler } = await import(join(pkgDir, 'dsh/server.js'))
 const { Workbench } = await import(join(pkgDir, 'dsh/workbench.js'))
 const { API_BASE, UI_ENTRY } = await import(join(pkgDir, 'lib/identity.js'))
-const { version } = await import(join(pkgDir, 'lib/version.js'))
+const { version, build } = await import(join(pkgDir, 'lib/version.js'))
 
 const wb = new Workbench({ root })
 wb.open()
 const services = {
   version,
+  buildDate: build,
   capabilities: ['bootstrap', 'subjects', 'records', 'trial-profile', 'trials', 'saved-trials', 'data-root'],
   bootstrap: () => wb.bootstrap(),
   listProfiles: () => wb.listProfiles(),

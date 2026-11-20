@@ -1,6 +1,6 @@
 /* 探针覆盖断言（LESSONS 第 10 类「检查器全绿可能是它没在看你那一页」的可断言版）
    用法：node scripts/check-probe-coverage.mjs
-   判据：全量渲染探针必须覆盖 prototypes/v0.2/app.js 里的每一条 ROUTES 叶子路由。
+   判据：全量渲染探针必须覆盖最新原型（优先 prototypes/v0.3/app.js，回退 v0.2）里的每一条 ROUTES 叶子路由。
         探针的路由清单是手写常量，加路由时极易漏改 —— 漏改时探针"全绿"只是因为它没扫新页。
 
    三条容易踩空的约定：
@@ -19,7 +19,7 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = dirname(dirname(fileURLToPath(import.meta.url)));
-const APP = join(ROOT, 'prototypes/v0.2/app.js');
+const APP = ['prototypes/v0.3/app.js', 'prototypes/v0.2/app.js'].map((p) => join(ROOT, p)).find((p) => existsSync(p)) || join(ROOT, 'prototypes/v0.2/app.js');
 const fails = [], oks = [];
 
 /* 新项目从第一天起 check 必须全绿（此时还没有原型）。
@@ -27,7 +27,7 @@ const fails = [], oks = [];
    注意：skip 不是静默——它会把 skip 原因打出来，避免以后误以为已经被保护了。 */
 if (!existsSync(APP)) {
   console.log(JSON.stringify({ pass: true, skipped: true,
-    reason: 'prototypes/v0.2/app.js 还不存在（原型未开始）：探针覆盖断言暂不启用，原型落地后自动生效。',
+    reason: '最新原型 app.js 还不存在（原型未开始）：探针覆盖断言暂不启用，原型落地后自动生效。',
     fails: [], oks: [] }, null, 2));
   process.exit(0);
 }

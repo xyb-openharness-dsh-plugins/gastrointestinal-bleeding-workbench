@@ -112,7 +112,7 @@ export function createHandler({ apiBase = '', publicDir, services }) {
         if (file.toLowerCase().endsWith('.html')) {
           /* 服务端形态注入（api-ready 标志 + 版本占位）：少了它装机后 host-bridge 永远不连线，
              业务区只剩「原型预览」降级稿——2026-11-20 实测踩到。 */
-          body = Buffer.from(injectHtmlFlags(body.toString('utf8'), services?.version), 'utf8')
+          body = Buffer.from(injectHtmlFlags(body.toString('utf8'), services?.version, services?.buildDate), 'utf8')
         }
         res.writeHead(200, { 'content-type': contentType(file), 'cache-control': 'no-store' })
         return res.end(req.method === 'HEAD' ? undefined : body)

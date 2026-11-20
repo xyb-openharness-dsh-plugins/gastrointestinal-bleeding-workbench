@@ -188,6 +188,8 @@ export class Workbench {
       bleedingSigns: row.bleeding_signs_json ? JSON.parse(row.bleeding_signs_json) : [],
       antithrombotic: row.antithrombotic_json ? JSON.parse(row.antithrombotic_json) : [],
       pregnant: row.pregnant,
+      liverDisease: row.liver_disease === null || row.liver_disease === undefined ? null : Number(row.liver_disease) === 1,
+      heartFailure: row.heart_failure === null || row.heart_failure === undefined ? null : Number(row.heart_failure) === 1,
       note: row.note || '',
       updatedAt: row.updated_at,
     }
@@ -205,12 +207,15 @@ export class Workbench {
     const signs = Array.isArray(input.bleedingSigns) ? input.bleedingSigns.map(String).filter(Boolean).slice(0, 20) : []
     const antithrombotic = Array.isArray(input.antithrombotic) ? input.antithrombotic.map(String).filter(Boolean).slice(0, 20) : []
     const pregnant = ['yes', 'no'].includes(input.pregnant) ? input.pregnant : null
+    const liverDisease = input.liverDisease === true ? 1 : input.liverDisease === false ? 0 : null
+    const heartFailure = input.heartFailure === true ? 1 : input.heartFailure === false ? 0 : null
     const now = new Date().toISOString()
-    this.db.prepare(`INSERT INTO trial_profile(profile_key,age,sex,diagnosis_confirmed,bleeding_signs_json,antithrombotic_json,pregnant,note,updated_at)
-      VALUES(?,?,?,?,?,?,?,?,?)
+    this.db.prepare(`INSERT INTO trial_profile(profile_key,age,sex,diagnosis_confirmed,bleeding_signs_json,antithrombotic_json,pregnant,liver_disease,heart_failure,note,updated_at)
+      VALUES(?,?,?,?,?,?,?,?,?,?,?)
       ON CONFLICT(profile_key) DO UPDATE SET age=excluded.age, sex=excluded.sex, diagnosis_confirmed=excluded.diagnosis_confirmed,
-        bleeding_signs_json=excluded.bleeding_signs_json, antithrombotic_json=excluded.antithrombotic_json, pregnant=excluded.pregnant, note=excluded.note, updated_at=excluded.updated_at`)
-      .run(key, age, sex, diagnosisConfirmed, JSON.stringify(signs), JSON.stringify(antithrombotic), pregnant, String(input.note || '').slice(0, 500), now)
+        bleeding_signs_json=excluded.bleeding_signs_json, antithrombotic_json=excluded.antithrombotic_json, pregnant=excluded.pregnant,
+        liver_disease=excluded.liver_disease, heart_failure=excluded.heart_failure, note=excluded.note, updated_at=excluded.updated_at`)
+      .run(key, age, sex, diagnosisConfirmed, JSON.stringify(signs), JSON.stringify(antithrombotic), pregnant, liverDisease, heartFailure, String(input.note || '').slice(0, 500), now)
     return this.getTrialProfile(key)
   }
 

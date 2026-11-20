@@ -1,0 +1,75 @@
+/* v0.3 两套合成档案（唯一演示源；全部虚构，不含真实患者信息）
+ * A = 首次突发：长期吃止痛药、第一次黑便、记录少、信息缺口多
+ * B = 长期随访：胰腺癌胰体尾切除+脾切除术后，胃底静脉曲张反复出血，指标与用药都多
+ * 记录形状：{ id, kind, date, ...字段, vitals?, recordedBy, sourceNote, private? }
+ * 八类：bleed / lab / treatment / question / hospital / report / doc / mind
+ * carePlan 只存用户自己填的计划，不做医学建议。
+ */
+window.GIB_DEMO = {
+  notice: '合成示例 · 全部为虚构内容；不构成诊断、分级或处置建议。',
+  profiles: [
+    {
+      profileKey: 'a',
+      name: '林先生 · 首次黑便',
+      meta: '61 岁 · 长期止痛药 · 记录刚起步',
+      avatar: '林',
+      summary: '第一次遇到黑便，还没有自己的记录节奏。先把“看到什么、什么时候、用过什么药”记清楚，其余交给医生判断。',
+      carePlan: { nextVisit: '', hospital: '', transport: '', contact: '女儿（异地）' },
+      trialFacts: { age: 61, sex: 'male', diagnosisConfirmed: true, bleedingSigns: ['黑便'], antithrombotic: ['非甾体抗炎药（NSAIDs）'], pregnant: 'no', liverDisease: false, heartFailure: false },
+      records: [
+        { id: 'bleed-a1', kind: 'bleed', date: '2026-11-18', when: '约 14:30', observed: ['黑便'], note: '排便颜色很深，像柏油；次数记不清，没有呕血。', vitals: { sbp: 118, hr: 88 }, recordedBy: '本人', sourceNote: '本人亲见', createdAt: '2026-11-18T15:00:00Z' },
+        { id: 'lab-a1', kind: 'lab', date: '2026-11-18', item: '血红蛋白（Hb）', value: '116', unit: 'g/L', note: '急诊化验单抄录（合成）；参考范围未取得。', recordedBy: '本人', sourceNote: '化验单（合成）', createdAt: '2026-11-18T20:10:00Z' },
+        { id: 'hospital-a1', kind: 'hospital', date: '2026-11-18', place: '合成医院急诊', reason: '黑便后就诊（虚构）', note: '医生建议留观；胃镜时间待定。', recordedBy: '本人', sourceNote: '就诊记录（合成）', createdAt: '2026-11-18T22:10:00Z' },
+        { id: 'treatment-a1', kind: 'treatment', date: '2026-11-18', name: '医生告知：先暂停止痛药，等胃镜结果', note: '按医生原话记录；没有自行调整其他药物。', recordedBy: '本人', sourceNote: '急诊医嘱口头告知（合成）', createdAt: '2026-11-18T22:20:00Z' },
+        { id: 'report-a1', kind: 'report', date: '2026-11-19', name: '胃镜报告（待取）', note: '检查已做，报告原文尚未拿到；不抄写未核对的结论。', recordedBy: '本人', sourceNote: '检查安排（合成）', createdAt: '2026-11-19T09:00:00Z' },
+        { id: 'question-a1', kind: 'question', text: '止痛药以后还能不能吃？如果不能，平时膝盖痛怎么办？', recordedBy: '本人', sourceNote: '自己的问题', createdAt: '2026-11-19T09:10:00Z' },
+        { id: 'question-a2', kind: 'question', text: '胃镜报告出来以后，需要隔多久复查一次？', recordedBy: '本人', sourceNote: '自己的问题', createdAt: '2026-11-19T09:12:00Z' },
+        { id: 'doc-a1', kind: 'doc', date: '2026-11-18', name: '急诊病历与化验单（合成）', note: '纸质件在包里；未上传。', createdAt: '2026-11-18T22:30:00Z' },
+        { id: 'mind-a1', kind: 'mind', date: '2026-11-19', text: '第一次遇到这种事，有点慌，也怕自己记不清楚。', private: true, createdAt: '2026-11-19T22:00:00Z' },
+      ],
+    },
+    {
+      profileKey: 'b',
+      name: '陈女士 · 反复出血随访',
+      meta: '74 岁 · 胰体尾切除+脾切除术后 · 胃底静脉曲张',
+      avatar: '陈',
+      summary: '胰腺癌术后第 3 年，做过脾切除；近一年反复黑便/呕血，正在按医生安排复查。记录重点是出血时间、生命体征、血红蛋白和抗栓药。',
+      carePlan: { nextVisit: '2026-12-10', hospital: '合成医院消化内科（内镜中心）', transport: '家属驾车约 25 分钟；夜间走急诊绿色通道', contact: '女儿（同城）' },
+      trialFacts: { age: 74, sex: 'female', diagnosisConfirmed: true, bleedingSigns: ['呕血', '黑便', '血便或便血'], antithrombotic: ['抗血小板药'], pregnant: 'no', liverDisease: false, heartFailure: false },
+      records: [
+        { id: 'bleed-b1', kind: 'bleed', date: '2026-06-03', when: '上午', observed: ['呕血', '黑便'], note: '呕吐物带血丝，随后解黑便；由家属陪同就诊。', vitals: { sbp: 96, hr: 110 }, recordedBy: '照护者', sourceNote: '照护者亲见', createdAt: '2026-06-03T11:30:00Z' },
+        { id: 'bleed-b2', kind: 'bleed', date: '2026-09-14', when: '凌晨', observed: ['黑便', '头晕或晕厥'], note: '起夜时头晕坐地，随后发现黑便。', vitals: { sbp: 92, hr: 112 }, recordedBy: '照护者', sourceNote: '照护者亲见', createdAt: '2026-09-14T04:20:00Z' },
+        { id: 'bleed-b3', kind: 'bleed', date: '2026-10-28', when: '凌晨 3 点', observed: ['黑便'], note: '第二次黑便，无明显头晕；家属陪同急诊。', vitals: { sbp: 104, hr: 96 }, recordedBy: '照护者', sourceNote: '照护者亲见', createdAt: '2026-10-28T04:20:00Z' },
+        { id: 'bleed-b4', kind: 'bleed', date: '2026-11-12', when: '晚饭后', observed: ['血便或便血'], note: '便中带鲜红色，量不多；当天没有头晕。', vitals: { sbp: 110, hr: 84 }, recordedBy: '本人', sourceNote: '本人亲见', createdAt: '2026-11-12T20:05:00Z' },
+        { id: 'lab-b1', kind: 'lab', date: '2026-06-03', item: '血红蛋白（Hb）', value: '88', unit: 'g/L', note: '急诊化验（合成）；参考范围未取得。', recordedBy: '照护者', sourceNote: '化验单（合成）', createdAt: '2026-06-03T13:00:00Z' },
+        { id: 'lab-b2', kind: 'lab', date: '2026-09-14', item: '血红蛋白（Hb）', value: '92', unit: 'g/L', note: '急诊化验（合成）。', recordedBy: '照护者', sourceNote: '化验单（合成）', createdAt: '2026-09-14T06:00:00Z' },
+        { id: 'lab-b3', kind: 'lab', date: '2026-10-28', item: '血红蛋白（Hb）', value: '96', unit: 'g/L', note: '急诊化验（合成）。', recordedBy: '照护者', sourceNote: '化验单（合成）', createdAt: '2026-10-28T06:00:00Z' },
+        { id: 'lab-b4', kind: 'lab', date: '2026-11-02', item: '血红蛋白（Hb）', value: '104', unit: 'g/L', note: '门诊复查（合成）。', recordedBy: '照护者', sourceNote: '化验单（合成）', createdAt: '2026-11-02T10:00:00Z' },
+        { id: 'lab-b5', kind: 'lab', date: '2026-11-12', item: '血红蛋白（Hb）', value: '99', unit: 'g/L', note: '门诊复查（合成）。', recordedBy: '本人', sourceNote: '化验单（合成）', createdAt: '2026-11-12T16:40:00Z' },
+        { id: 'lab-b6', kind: 'lab', date: '2026-10-28', item: '尿素氮（BUN）', value: '9.8', unit: 'mmol/L', note: '急诊化验（合成）；参考范围未取得。', recordedBy: '照护者', sourceNote: '化验单（合成）', createdAt: '2026-10-28T06:05:00Z' },
+        { id: 'lab-b7', kind: 'lab', date: '2026-10-28', item: '血小板（PLT）', value: '186', unit: '×10⁹/L', note: '急诊化验（合成）。', recordedBy: '照护者', sourceNote: '化验单（合成）', createdAt: '2026-10-28T06:06:00Z' },
+        { id: 'lab-b8', kind: 'lab', date: '2026-10-28', item: '白蛋白（ALB）', value: '36', unit: 'g/L', note: '急诊化验（合成）。', recordedBy: '照护者', sourceNote: '化验单（合成）', createdAt: '2026-10-28T06:07:00Z' },
+        { id: 'lab-b9', kind: 'lab', date: '2026-10-28', item: '凝血酶原时间国际标准化比值（INR）', value: '1.1', unit: '', note: '急诊化验（合成）。', recordedBy: '照护者', sourceNote: '化验单（合成）', createdAt: '2026-10-28T06:08:00Z' },
+        { id: 'treatment-b1', kind: 'treatment', date: '2026-06-03', name: '内镜下组织胶注射（院内）', note: '医生告知的处理名称；剂量与过程以操作记录为准（合成）。', recordedBy: '照护者', sourceNote: '出院记录（合成）', createdAt: '2026-06-05T12:00:00Z' },
+        { id: 'treatment-b2', kind: 'treatment', date: '2026-09-16', name: '内镜下套扎治疗（院内）', note: '按出院记录抄录名称（合成）；结果以报告原件为准。', recordedBy: '照护者', sourceNote: '出院记录（合成）', createdAt: '2026-09-20T12:00:00Z' },
+        { id: 'treatment-b3', kind: 'treatment', date: '2026-10-28', name: '静脉补液与输血评估（院内）', note: '只记录医生告知的处理名称（合成）。', recordedBy: '照护者', sourceNote: '急诊记录（合成）', createdAt: '2026-10-28T08:00:00Z' },
+        { id: 'treatment-b4', kind: 'treatment', date: '2026-10-29', name: '质子泵抑制剂（院内开始）', note: '药名与疗程以出院带药单为准（合成）；不自行调整。', recordedBy: '照护者', sourceNote: '出院带药单（合成）', createdAt: '2026-10-29T10:00:00Z' },
+        { id: 'treatment-b5', kind: 'treatment', date: '2025-06-20', name: '胰体尾切除 + 脾切除（既往手术）', note: '手术名称按出院小结抄录（合成）。', recordedBy: '本人', sourceNote: '出院小结（合成）', createdAt: '2026-06-04T10:00:00Z' },
+        { id: 'hospital-b1', kind: 'hospital', date: '2026-06-03', place: '合成医院消化内科', reason: '呕血伴黑便住院（虚构）', note: '住院 4 天。', recordedBy: '照护者', sourceNote: '出院记录（合成）', createdAt: '2026-06-03T15:00:00Z' },
+        { id: 'hospital-b2', kind: 'hospital', date: '2026-09-14', place: '合成医院急诊', reason: '黑便伴头晕（虚构）', note: '留观后转入消化内科。', recordedBy: '照护者', sourceNote: '急诊记录（合成）', createdAt: '2026-09-14T08:00:00Z' },
+        { id: 'hospital-b3', kind: 'hospital', date: '2026-10-28', place: '合成医院急诊', reason: '再次黑便（虚构）', note: '留观 1 晚后回家。', recordedBy: '照护者', sourceNote: '急诊记录（合成）', createdAt: '2026-10-28T09:00:00Z' },
+        { id: 'hospital-b4', kind: 'hospital', date: '2026-11-12', place: '合成医院门诊', reason: '便血复查（虚构）', note: '门诊复查，未住院。', recordedBy: '本人', sourceNote: '门诊记录（合成）', createdAt: '2026-11-12T15:00:00Z' },
+        { id: 'report-b1', kind: 'report', date: '2026-09-16', name: '胃镜报告（合成）', note: '报告摘要抄录：胃底静脉曲张，具体分级与描述以原件为准。', recordedBy: '照护者', sourceNote: '报告复印件（合成）', createdAt: '2026-09-20T12:05:00Z' },
+        { id: 'report-b2', kind: 'report', date: '2025-06-18', name: '腹部 CT（术后复查，合成）', note: '只记录检查名称与日期；结论不抄写未核对内容。', recordedBy: '本人', sourceNote: '报告复印件（合成）', createdAt: '2026-06-04T10:05:00Z' },
+        { id: 'report-b3', kind: 'report', date: '2026-11-12', name: '血常规报告（合成）', note: '数值见化验记录；报告原件在门诊病历夹。', recordedBy: '本人', sourceNote: '化验单（合成）', createdAt: '2026-11-12T17:00:00Z' },
+        { id: 'doc-b1', kind: 'doc', date: '2025-06-25', name: '胰腺癌手术出院小结（合成）', note: '纸质件在家；未上传。', createdAt: '2026-06-04T10:10:00Z' },
+        { id: 'doc-b2', kind: 'doc', date: '2026-11-12', name: '门诊病历本（合成）', note: '随身携带。', createdAt: '2026-11-12T17:20:00Z' },
+        { id: 'question-b1', kind: 'question', text: '抗血小板药什么时候恢复？如果恢复，需不需要同时加保护胃的药？', recordedBy: '本人', sourceNote: '自己的问题', createdAt: '2026-11-12T17:30:00Z' },
+        { id: 'question-b2', kind: 'question', text: '胃底静脉曲张下一次复查胃镜大约什么时候？', recordedBy: '本人', sourceNote: '自己的问题', createdAt: '2026-11-12T17:31:00Z' },
+        { id: 'question-b3', kind: 'question', text: '脾已经切除了，为什么还会有静脉曲张出血的风险？', recordedBy: '照护者', sourceNote: '家属的问题', createdAt: '2026-10-29T09:00:00Z' },
+        { id: 'mind-b1', kind: 'mind', date: '2026-10-29', text: '夜里听到一点动静就担心是不是又出血，睡不好。', private: true, createdAt: '2026-10-29T23:00:00Z' },
+        { id: 'mind-b2', kind: 'mind', date: '2026-11-13', text: '便血后情绪紧张，但复查结果还没出来，不想先下结论。', private: true, createdAt: '2026-11-13T21:00:00Z' },
+      ],
+    },
+  ],
+}

@@ -47,13 +47,16 @@ export function resolveStatic(root, urlPath) {
  *  ① API 就绪标志（host-bridge 据此决定是否请求 bootstrap，
  *     静态/file:// 形态不注入 → 不发请求、控制台零 404）；
  *  ② 版本号占位替换（__VERSION_DISPLAY__ 由调用方传入；未传则不替换）。 */
-export function injectHtmlFlags(html, uiVersion) {
+export function injectHtmlFlags(html, uiVersion, buildDate) {
   let out = String(html)
   if (!out.includes('__gibApiReady')) {
     out = out.replace(/<head>/, '<head><script>window.__gibApiReady=1</script>')
   }
   if (typeof uiVersion === 'string' && uiVersion) {
     out = out.split('__VERSION_DISPLAY__').join('v' + uiVersion)
+  }
+  if (typeof buildDate === 'string' && buildDate) {
+    out = out.split('__BUILD_DATE__').join(buildDate)
   }
   return out
 }

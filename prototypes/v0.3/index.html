@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#faf7f2">
+<title>消化道出血工作台 · 交互原型 v0.3</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="primer.css">
+</head>
+<body>
+<a class="skip" href="#main">跳到主要内容</a>
+<div class="prototype-bar"><span><b>交互原型 v0.3</b> · 合成示例数据</span><span>预防 → 管理 → 处置 → 后续 · 不诊断、不分级、不给药</span></div>
+<div class="workspace">
+  <aside class="sidebar" aria-label="工作台业务导航">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 48 48" width="44" height="44" fill="none">
+          <rect x="2" y="2" width="44" height="44" rx="14" fill="#e8f3ee" stroke="#cfe3d9"/>
+          <path d="M24 9c5.2 6.4 8.4 10.7 8.4 15.2A8.4 8.4 0 0 1 24 32.6a8.4 8.4 0 0 1-8.4-8.4C15.6 19.7 18.8 15.4 24 9Z" fill="#146356" opacity=".92"/>
+          <path d="M24 17.5c2.6 3.2 4.2 5.4 4.2 7.5a4.2 4.2 0 1 1-8.4 0c0-2.1 1.6-4.3 4.2-7.5Z" fill="#faf7f2"/>
+          <path d="M14 36.5h20" stroke="#146356" stroke-width="2.4" stroke-linecap="round" opacity=".55"/>
+        </svg>
+      </span>
+      <div><strong>消化道出血工作台</strong><span>占位名 · 待追认</span></div>
+    </div>
+    <button class="profile-btn" type="button" data-action="profiles" aria-label="切换演示档案，当前为陈女士">
+      <span class="avatar" id="profileAvatar" aria-hidden="true">陈</span>
+      <span class="profile-copy"><b id="profileName">载入中…</b><span id="profileMeta"></span></span>
+      <span class="profile-caret" aria-hidden="true">⌄</span>
+    </button>
+    <nav id="nav" class="nav" aria-label="一级导航"></nav>
+    <div class="sidebar-bottom">
+      <p class="sidebar-note">记录可以少一点，<br>准备可以多一点。</p>
+      <button class="text-button" type="button" data-action="settings">设置与资料目录</button>
+      <button class="text-button" type="button" data-action="about">关于与版本</button>
+    </div>
+  </aside>
+  <div class="work-area">
+    <header class="topbar">
+      <div class="breadcrumb"><span>工作台</span><i>/</i><b id="breadcrumb">看板</b></div>
+      <div class="top-actions">
+        <button class="status-chip" id="rootChip" type="button" data-action="pick-dir" aria-label="资料目录：查看或切换"><i></i><span>资料目录</span><b id="rootChipText">演示</b></button>
+        <button class="status-chip" id="agentChip" type="button" data-action="agent-draft" aria-label="把当前摘要填入 AI 草稿"><i class="grey"></i><span>AI 草稿</span><b>只填不发</b></button>
+        <button class="icon-btn" type="button" data-action="help" aria-label="帮助">?</button>
+        <button class="text-btn" id="fontToggle" type="button" aria-pressed="false">大字 Aa</button>
+        <button class="icon-btn primer-entry" type="button" data-primer-open aria-label="疾病概要：定义、医学资料规范和指南情况、目前治疗全景概要、发展趋势">?</button>
+        <button class="ver-chip" id="verChip" type="button" data-action="about">v0.3</button>
+      </div>
+    </header>
+    <main id="main" tabindex="-1"></main>
+    <footer class="footer">消化道出血工作台 · 合成示例用于演示 <span class="ver-line"><b id="appVersion">v0.3</b><em>2026-11-20</em></span></footer>
+  </div>
+</div>
+<dialog id="dialog" aria-labelledby="dialogTitle">
+  <div class="dialog-head"><div><span class="eyebrow" id="dialogEyebrow">工作台</span><h2 id="dialogTitle"></h2></div><button class="icon-btn" type="button" data-action="close-dialog" aria-label="关闭">×</button></div>
+  <div id="dialogBody" class="dialog-body"></div>
+  <div id="dialogFoot" class="dialog-foot"></div>
+</dialog>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script src="demo-data.js"></script>
+<script src="primer-data.js"></script>
+<script src="primer.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

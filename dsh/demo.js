@@ -9,8 +9,8 @@
  */
 
 const DEMO = [
-  { key: 'a', name: '示例组 A · 首次突发', meta: '合成示例 · 记录少 · 刷新后回到默认组' },
-  { key: 'b', name: '示例组 B · 反复出血长期随访', meta: '合成示例 · 记录多 · 与 A 相互独立' },
+  { key: 'a', name: '林先生 · 首次黑便', meta: '合成示例 · 61 岁 · 记录刚起步' },
+  { key: 'b', name: '陈女士 · 反复出血随访', meta: '合成示例 · 74 岁 · 胰腺癌术后脾切除' },
 ]
 
 /** 幂等：已有 a/b 就不动；返回本轮新插入条数。 */
@@ -18,8 +18,12 @@ export function seedDemoData(db) {
   let inserted = 0
   const now = new Date().toISOString().slice(0, 10)
   for (const item of DEMO) {
-    const exists = db.prepare('SELECT profile_key FROM subjects WHERE profile_key = ?').get(item.key)
-    if (exists) continue
+    const exists = db.prepare('SELECT profile_key, is_demo FROM subjects WHERE profile_key = ?').get(item.key)
+    if (exists) {
+      /* demo 行只同步展示名，不触碰用户档案；已经存在的库也能跟上新版演示文案。 */
+      if (Number(exists.is_demo) === 1) db.prepare('UPDATE subjects SET name = ?, meta = ? WHERE profile_key = ? AND is_demo = 1').run(item.name, item.meta, item.key)
+      continue
+    }
     db.prepare('INSERT INTO subjects (profile_key, name, meta, is_demo, created_on) VALUES (?,?,?,1,?)')
       .run(item.key, item.name, item.meta, now)
     inserted++

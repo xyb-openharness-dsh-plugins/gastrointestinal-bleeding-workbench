@@ -13,7 +13,7 @@ import { fileURLToPath } from 'node:url'
 import { Workbench } from './workbench.js'
 import { createHandler, checkDataDir, resolveStatic, contentType } from './server.js'
 import { API_BASE, UI_ENTRY } from '../lib/identity.js'
-import { version } from '../lib/version.js'
+import { version, build } from '../lib/version.js'
 
 export { Workbench, RECORD_KINDS } from './workbench.js'
 export { createHandler, checkDataDir, resolveStatic, contentType } from './server.js'
@@ -68,6 +68,7 @@ export function apply(ctx, config = {}) {
 
   const services = {
     version,
+    buildDate: build,
     capabilities: CAPABILITIES,
     bootstrap: () => workbench.bootstrap(),
     listProfiles: () => workbench.listProfiles(),

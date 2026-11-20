@@ -1,6 +1,6 @@
 {
   "name": "@xyb-community/gastrointestinal-bleeding-workbench",
-  "version": "0.2.0-rc.1",
+  "version": "0.2.0-rc.2",
   "description": "面向中国大陆成人患者与照护者的消化道出血求助识别与就诊信息整理工具（试点）",
   "private": true,
   "type": "module",

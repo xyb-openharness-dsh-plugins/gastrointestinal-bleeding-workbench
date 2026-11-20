@@ -781,6 +781,18 @@
         e.preventDefault()
         return
       }
+      var stab = e.target.closest('[data-settings-tab]')
+      if (stab) {
+        var which = stab.getAttribute('data-settings-tab')
+        document.querySelectorAll('[data-settings-tab]').forEach(function (x) {
+          var on = x === stab
+          x.classList.toggle('active', on)
+          x.setAttribute('aria-selected', on ? 'true' : 'false')
+          $('spanel-' + x.getAttribute('data-settings-tab')).hidden = !on
+        })
+        if (which === 'db') renderSettings()
+        return
+      }
       var tab = e.target.closest('[data-clinical-tab]')
       if (tab) {
         goto('clinical/' + tab.getAttribute('data-clinical-tab'))

@@ -76,7 +76,7 @@ const EXPECT = {
   'clinical/search': { selector: '#clinical-search:not([hidden])', text: '检索（按条件排，不掺分数）' },
   'clinical/saved': { selector: '#clinical-saved:not([hidden])', text: '收藏' },
   primer: { selector: '#view-primer:not([hidden])', text: '疾病概要：消化道出血是什么？' },
-  settings: { selector: '#view-settings:not([hidden])', text: '临床数据库（逐通道终态）' },
+  settings: { selector: '#view-settings:not([hidden])', text: '资料目录' },
 }
 
 async function main() {

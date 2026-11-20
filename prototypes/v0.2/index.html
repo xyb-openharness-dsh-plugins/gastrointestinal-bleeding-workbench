@@ -177,17 +177,22 @@
     <section class="view" id="view-settings" aria-labelledby="settingsTitle" hidden>
       <div class="page-head"><div><div class="eyebrow">本机设置</div><h1 id="settingsTitle">设置</h1>
         <p class="intro">只显示真实状态：数据目录、临床数据库通道终态、隐私口径。不显示编造的路径或未验证的结论。</p></div></div>
-      <section class="panel">
+      <div class="tabs" role="tablist" aria-label="设置分区">
+        <button class="tab active" role="tab" aria-selected="true" data-settings-tab="dir" id="stab-dir" aria-controls="spanel-dir">资料目录</button>
+        <button class="tab" role="tab" aria-selected="false" data-settings-tab="db" id="stab-db" aria-controls="spanel-db">临床数据库</button>
+        <button class="tab" role="tab" aria-selected="false" data-settings-tab="privacy" id="stab-privacy" aria-controls="spanel-privacy">隐私</button>
+      </div>
+      <section class="panel" id="spanel-dir" role="tabpanel" aria-labelledby="stab-dir">
         <h2>数据目录</h2>
         <p class="panel-intro">资料目录由顶栏「配置目录」选择（宿主目录选择器），主目录本身 / 桌面 / 下载根目录 / tmp 会被拒绝；服务端二次校验。</p>
         <p class="fact-value" id="settingsDataDir">未连接服务时不可用（演示态）</p>
       </section>
-      <section class="panel" style="margin-top:14px">
+      <section class="panel" id="spanel-db" role="tabpanel" aria-labelledby="stab-db" hidden>
         <h2>临床数据库（逐通道终态）</h2>
         <p class="panel-intro">只有「已查询且有结果 / 已查询无结果」算查过；失败、超时、未配置一律如实列出，不算覆盖率。「相关 0」不等于「没有研究」——检索词命中才进池。</p>
         <div id="settingsChannels" class="channel-list"><div class="empty">载入中…</div></div>
       </section>
-      <section class="panel" style="margin-top:14px">
+      <section class="panel" id="spanel-privacy" role="tabpanel" aria-labelledby="stab-privacy" hidden>
         <h2>隐私</h2>
         <ul class="plain-list">
           <li>记录只写本机资料目录的 sqlite；导出 / 摘要不含私密记录（私密仅本人可见）。</li>

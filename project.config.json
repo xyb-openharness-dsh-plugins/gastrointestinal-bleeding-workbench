@@ -1,5 +1,5 @@
 {
-  "packageName": "gastrointestinal-bleeding-workbench",
+  "packageName": "@xyb-community/gastrointestinal-bleeding-workbench",
   "title": "消化道出血工作台（占位名，待用户追认）",
   "repository": "https://github.com/xyb-openharness-dsh-plugins/gastrointestinal-bleeding-workbench",
   "description": "面向中国大陆成人患者与照护者的消化道出血求助识别与就诊信息整理工具（试点）",

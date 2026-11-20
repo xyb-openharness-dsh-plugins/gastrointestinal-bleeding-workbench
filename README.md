@@ -69,3 +69,19 @@ Logo 来源与使用限制见 assets/README.md。许可证、作者、仓库/发
 ## HTML先行与数据演进
 
 业务开发前先交付HTML交互工作台原型、实际预览并由用户确认版本/hash和范围。数据设计先区分领域事实、流程状态和页面读模型，走查前端/流程变化、兼容与迁移；原型对象不直接作为表。见[规范](docs/14-HTML-AND-DATA-CONTRACT.md)。
+
+
+## v0.3 界面（实渲截图）
+
+- 看板：`docs/evidence/v03-ui-dashboard.png`
+- 识别与预防：`docs/evidence/v03-ui-prevent.png`
+- 家庭监测：`docs/evidence/v03-ui-monitor.png`
+- 急诊与送医：`docs/evidence/v03-ui-emergency.png`
+- 血红蛋白趋势：`docs/evidence/v03-ui-hb.png`
+- 评分模型：`docs/evidence/v03-ui-score.png`
+- 静脉曲张专项（脾切除后）：`docs/evidence/v03-ui-varices.png`
+- 临床研究：`docs/evidence/v03-ui-clinical.png`
+- 专科与资源：`docs/evidence/v03-ui-centers.png`
+- 390px 移动端：`docs/evidence/v03-ui-mobile.png`
+
+信息架构与来源见 `docs/UI-REDESIGN-v0.3.md`；截图均为本机真实渲染（1440×1000，移动端 390×844）。
